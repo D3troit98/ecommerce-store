@@ -1,5 +1,5 @@
 import React from 'react'
-import { Product, FooterBanner, HeroBanner, EcommerceHeader } from '../components'
+import { Product, FooterBanner, HeroBanner, EcommerceHeader, NewsletterSubscribe,FeatureSection } from '../components'
 import { client } from '../lib/client'
 const Home = ({products, bannerData}) => {
   return (
@@ -21,6 +21,10 @@ const Home = ({products, bannerData}) => {
    <EcommerceHeader products={products}/>
 
     <FooterBanner  footerBanner={bannerData && bannerData[0]}/>
+
+    <NewsletterSubscribe />
+
+   <FeatureSection />
     </>
   )
 }
