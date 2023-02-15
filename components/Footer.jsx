@@ -1,15 +1,16 @@
 import React from 'react';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import {BsArrowUpLeftCircleFill} from 'react-icons/bs'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
     <div className="footer-container">
         <div className='footer-links'>
         <div className="column">
-        <h3>Detroit Headphones</h3>
+        <h3>Detroit Car Store</h3>
         <p>
-          Mavigadget is a product discovery platform, a place where you can discover, explore and share unique hand-picked amazing products from all over the world. Connect to the coolest producers, brands, startups and inventors out there.
+        Discover unique car parts and accessories at Detroit Car Store. Upgrade your car's performance, style, and comfort with our hand-picked collection from around the world. Shop with us today!
         </p>
         <div style={{display:'flex',gap:"5px",alignItems:"center",marginTop:"10px"}}>
         <BsArrowUpLeftCircleFill />
@@ -23,32 +24,57 @@ const Footer = () => {
       <div className="column">
         <h3>INFORMATION</h3>
         <ul>
-          <li>About us</li>
-          <li>Terms Of Service</li>
-          <li>Shipping Policy</li>
-          <li>Return and Refund Policy</li>
-          <li>Privacy Policy</li>
-          <li>Copyright Policy and DMCA Notice</li>
+          <li>
+          <Link href={"/"}>About us</Link>
+            </li>
+          <li>
+          <Link href={"/"}>Terms Of Service</Link>
+            </li>
+          <li>
+          <Link href={"/"}>Shipping Policy</Link>
+            </li>
+          <li>
+          <Link href={"/"}>Return and Refund Policy</Link>
+            </li>
+          <li>
+          <Link href={"/"}>Privacy Policy</Link>
+            </li>
+          <li>
+          <Link href={"/"}>Copyright Policy and DMCA Notice</Link>
+            </li>
         </ul>
       </div>
 
       <div className="column">
         <h3>MY ACCOUNT</h3>
         <ul>
-          <li>Contact us</li>
-          <li>Return and Refund Policy</li>
-          <li>Order History</li>
+          <li>
+          <Link href={"/"}> Contact us</Link>
+           </li>
+          <li>
+          <Link href={"/"}>Return and Refund Policy</Link>
+            </li>
+          <li>
+          <Link href={"/"}> Order History</Link>
+           </li>
         </ul>
       </div>
 
       <div className="column">
         <h3>MAKE MONEY</h3>
         <ul>
-          <li>Become an Affiliate</li>
-          <li>Sell on Mavigadget</li>
-          <li>Advertise on Mavigadget</li>
-          <li>Publish your Article</li>
-          <li>Wholesale</li>
+          <li>
+          <Link href={"/"}> Become an Affiliate</Link>
+           </li>
+          <li>
+          <Link href={"/"}> Sell on Detroit Car Shop</Link>
+            </li>
+          <li>
+          <Link href={"/"}> Advertise on Detroit Car Shop</Link>
+            </li>
+          <li>
+          <Link href={"/"}>  Wholesale</Link>
+           </li>
         </ul>
       </div>
         </div>

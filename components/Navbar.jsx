@@ -16,7 +16,7 @@ const Navbar = () => {
         <p className='logo'>Menu</p>
       </div>
       <p className="logo">
-        <Link href={"/"}>Detroit HeadPhones </Link>
+        <Link href={"/"}>Detroit Car Store</Link>
       </p>
       <div className='gap'>
       <AiOutlineSearch className="cart-icon" />
