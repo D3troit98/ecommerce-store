@@ -355,9 +355,45 @@ text-align: end;
 .tab-container{
   display: flex;
   flex: 1;
- 
-  
 }
+
+.EcommerceHeadercontainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.EcommerceHeaderlink {
+  margin-right: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  cursor: pointer;
+  color: gray;
+  font-size: 18px;
+}
+
+.EcommerceHeaderlink::before {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #f00;
+  transition: all 0.3s ease-out;
+}
+
+.EcommerceHeaderlink:hover::before {
+  width: 100%;
+}
+
+.EcommerceHeaderlink.active::before {
+  width: 100%;
+}
+
 .menu-items{
   display: flex;
   flex-direction: column;
