@@ -10,7 +10,9 @@ export const StateContext = ({ children }) => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [qty, setQty] = useState(1)
-
+    const [searchTerm, setSearchTerm] = useState('')
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('menu');
     let foundProduct;
     let index;
 
@@ -22,7 +24,7 @@ export const StateContext = ({ children }) => {
 
         if (checkProductInCart) {
             const updatedCartItems = cartItems.map((cartProduct) => {
-                console.log(cartProduct)
+                // console.log(cartProduct)
                 if (cartProduct?._id === product._id) return {
                     ...cartProduct,
                     quantity: cartProduct.quantity + quantity
@@ -77,7 +79,14 @@ export const StateContext = ({ children }) => {
         })
     }
 
-
+    const handleDropdownToggle = () => {
+        setIsDropdownOpen((prevState)=>!prevState)
+        console.log("dropdown",isDropdownOpen )
+    }
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+      };
+    
     return (
         <context.Provider
             value={{
@@ -95,6 +104,15 @@ export const StateContext = ({ children }) => {
                 setCartItems,
                 setTotalPrice,
                 setTotalQuantities,
+                searchTerm,
+                setSearchTerm,
+handleDropdownToggle,
+isDropdownOpen,
+setIsDropdownOpen,
+handleTabChange,
+activeTab,
+setActiveTab
+
             }}
         >
             {children}
