@@ -1,7 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Product, FooterBanner, HeroBanner, EcommerceHeader, NewsletterSubscribe,FeatureSection } from '../components'
 import { client } from '../lib/client'
 const Home = ({products, bannerData}) => {
+  const [loadMore, setLoadMore] = useState(true);
+
+  
+  const handleLoadMore = () => {
+    // Fetch more products and update the products state
+  };
   return (
     <>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -16,7 +22,11 @@ const Home = ({products, bannerData}) => {
     <div className='products-container'>
       {products?.map((product)=><Product  key={product._id} product={product}/>)}
     </div>
-
+    {loadMore && (
+        <button className='load-more-button' onClick={handleLoadMore}>
+          Load More
+        </button>
+      )}
 
    <EcommerceHeader products={products}/>
 
