@@ -31,9 +31,9 @@ const Layout = ({children}) => {
             <Navbar />
         </header>
         
-        <main className='main-container'>
+        {/* <main className='main-container'>
         {children}
-        </main>
+        </main> */}
         <footer>
             <Footer />
         </footer>
