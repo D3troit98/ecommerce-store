@@ -536,7 +536,7 @@ text-align: end;
   float: left;
   padding: 40px 10px;
   position: relative;
-  
+  max-width: 100%;
 }
 
 .category-search-container{

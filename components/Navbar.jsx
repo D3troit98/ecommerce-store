@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {AiOutlineShopping,AiOutlineSearch,AiOutlineMenu,handleDropdownToggle} from 'react-icons/ai'
@@ -7,7 +7,6 @@ import {Cart,Cartegories} from "./"
 import { useStateContext } from '../context/StateContext'
 const Navbar = ({visible}) => {
   const {showCart, setShowCart, totalQuantities,handleDropdownToggle ,isDropdownOpen, setIsDropdownOpen} = useStateContext()
-
   
   return (
     <div className={`navbar-container ${visible ? 'active' : ''}`}>
@@ -19,7 +18,7 @@ const Navbar = ({visible}) => {
         <Link href={"/"}>Detroit Car Store</Link>
       </p>
       <div className='gap'>
-      <AiOutlineSearch className="cart-icon" />
+      
   
   <button
     type="button"
