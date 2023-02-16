@@ -9,7 +9,7 @@ const Home = ({products, bannerData}) => {
     // Fetch more products and update the products state
   };
   return (
-    <>
+    <div className='indexstyles'>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
 
     <div className='products-heading'>
@@ -35,7 +35,7 @@ const Home = ({products, bannerData}) => {
     <NewsletterSubscribe />
 
    <FeatureSection />
-    </>
+   </div>
   )
 }
 

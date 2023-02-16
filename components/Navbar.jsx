@@ -5,12 +5,12 @@ import {AiOutlineShopping,AiOutlineSearch,AiOutlineMenu,handleDropdownToggle} fr
 
 import {Cart,Cartegories} from "./"
 import { useStateContext } from '../context/StateContext'
-const Navbar = () => {
+const Navbar = ({visible}) => {
   const {showCart, setShowCart, totalQuantities,handleDropdownToggle ,isDropdownOpen, setIsDropdownOpen} = useStateContext()
 
   
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container ${visible ? 'active' : ''}`}>
       <div className='menu' onClick={handleDropdownToggle} >
         <AiOutlineMenu className='menu-icon'/>
         <p className='logo'>Menu</p>

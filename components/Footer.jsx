@@ -13,7 +13,7 @@ const Footer = () => {
         Discover unique car parts and accessories at Detroit Car Store. Upgrade your car's performance, style, and comfort with our hand-picked collection from around the world. Shop with us today!
         </p>
         <div style={{display:'flex',gap:"5px",alignItems:"center",marginTop:"10px"}}>
-        <BsArrowUpLeftCircleFill />
+        <BsArrowUpLeftCircleFill className='small-screen'/> 
         <p>
           4610 N Clark Ave #1039 Chicago, IL, USA
         </p>

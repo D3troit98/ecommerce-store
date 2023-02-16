@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import { urlFor } from '../lib/client'
-const HeroBanner = ({heroBanner}) => {
+const HeroBanner = ({heroBanner,inView}) => {
     // console.log(heroBanner)
   return (
-    <div className='hero-banner-container'>
+    <div className={`hero-banner-container ${inView ? 'fade-in' : ''}`}>
         <div className='hero-banner-margin'>
             <p className='beats-solo'>{heroBanner.smallText}</p>
             <h3>{heroBanner.midText}</h3>

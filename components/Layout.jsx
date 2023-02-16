@@ -12,6 +12,7 @@ const Layout = ({children}) => {
   const handleScroll = event => {
     const currentScrollTop = event.currentTarget.scrollTop;
     setVisible(scrollTop > currentScrollTop);
+    console.log("scrollTop",scrollTop)
     setScrollTop(currentScrollTop);
   };
   const handleScrollToTop = () => {
@@ -27,13 +28,13 @@ const Layout = ({children}) => {
         <Head>
             <title>Detroit Store</title>
         </Head>
-        <header style={{ display: visible ? 'block' : 'none' }}>
-            <Navbar />
+        <header >
+            <Navbar visible={ visible}/>
         </header>
         
-        {/* <main className='main-container'>
+        <main className='main-container'>
         {children}
-        </main> */}
+        </main>
         <footer>
             <Footer />
         </footer>
