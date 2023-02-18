@@ -49,6 +49,10 @@ transition: top 0.5s ease-in-out;
 .navbar-container.active{
   top:0;
 }
+
+.navbar-container.scrollTop{
+  position: relative;
+}
 .scroll-to-top{
   display: flex;
   border-radius: 50%;

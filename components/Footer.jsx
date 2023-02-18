@@ -6,7 +6,7 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <div className="footer-container">
-        <div className='footer-links'>
+      {/* <div className='footer-links'>
         <div className="column">
         <h3>Detroit Car Store</h3>
         <p>
@@ -77,17 +77,16 @@ const Footer = () => {
            </li>
         </ul>
       </div>
-        </div>
-    
-    <div className='footer-social-reserve'>
-    <div className="social-icons">
-        <AiFillInstagram />
-        <AiOutlineTwitter />
-      </div>
+        </div> */}
 
-      <p className="rights">2022 Detroit HeadPhones All rights reserved</p>
-    </div>
-     
+      <div className="footer-social-reserve">
+        <div className="social-icons">
+          <AiFillInstagram />
+          <AiOutlineTwitter />
+        </div>
+
+        <p className="rights">2022 Detroit Car Store All rights reserved</p>
+      </div>
     </div>
   );
 };

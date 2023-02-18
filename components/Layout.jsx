@@ -22,33 +22,26 @@ const Layout = ({children}) => {
 
 
   return (
-    <div className='layout'
-    onScroll={handleScroll}
-    >
-        <Head>
-            <title>Detroit Store</title>
-        </Head>
-        <header >
-            <Navbar visible={ visible}/>
-        </header>
-        
-        <main className='main-container'>
-        {children}
-        </main>
-        <footer>
-            <Footer />
-        </footer>
+    <div className="layout" onScroll={handleScroll}>
+      <Head>
+        <title>Detroit Store</title>
+      </Head>
+      <header>
+        <Navbar scrollTop={scrollTop} visible={visible} />
+      </header>
 
-        
-    {  scrollTop > 500 &&<div 
-        className="scroll-to-top"
-        onClick={handleScrollToTop}
-      >
-        <BsFillArrowUpCircleFill className='scroll-top-arrow'/>
-      </div>
-      }
+      <main className="main-container">{children}</main>
+      <footer>
+        <Footer />
+      </footer>
+
+      {scrollTop > 500 && (
+        <div className="scroll-to-top" onClick={handleScrollToTop}>
+          <BsFillArrowUpCircleFill className="scroll-top-arrow" />
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default Layout
