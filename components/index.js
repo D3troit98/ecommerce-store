@@ -9,3 +9,4 @@ export {default as Cartegories} from './Cartegories'
 export {default as EcommerceHeader} from './EcommerceHeader'
 export {default as NewsletterSubscribe} from './NewsletterSubscribe.jsx'
 export {default as FeatureSection} from './FeatureSection.jsx'
+export { default as NormalNavbar } from "./NormalNavbar.jsx";

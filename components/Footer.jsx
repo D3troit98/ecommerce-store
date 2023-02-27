@@ -85,7 +85,7 @@ const Footer = () => {
           <AiOutlineTwitter />
         </div>
 
-        <p className="rights">2022 Detroit Car Store All rights reserved</p>
+        <p className="rights">2022 Detroit Store All rights reserved</p>
       </div>
     </div>
   );
