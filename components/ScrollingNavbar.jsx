@@ -24,8 +24,12 @@ const ScrollingNavbar = ({ visible, scrollTop }) => {
   return (
     <div
       className={`${
-        scrollTop <= 200 ? "hidden" : "lg:block"
-      }  bg-white w-full mt-0   hidden  ${visible ? " absolute z-[9999]" : ""}`}
+        scrollTop <= 250 ? "hidden" : "lg:block fixed top-0 left-0 w-full "
+      }transition duration-500  ease-in-out  bg-white w-full mt-0   hidden  ${
+        visible
+          ? "opacity-100 translate-y-0 absolute z-[9999]"
+          : "opacity-0 translate-y-full"
+      }`}
     >
       <div className="flex flex-col w-full  ">
         <div className="flex items-center justify-between border-b border-gray-300 py-4 px-12">
