@@ -10,3 +10,5 @@ export {default as EcommerceHeader} from './EcommerceHeader'
 export {default as NewsletterSubscribe} from './NewsletterSubscribe.jsx'
 export {default as FeatureSection} from './FeatureSection.jsx'
 export { default as NormalNavbar } from "./NormalNavbar.jsx";
+export { default as MobileNavbar } from "./MobileNavbar";
+export { default as ScrollingNavbar } from "./ScrollingNavbar";

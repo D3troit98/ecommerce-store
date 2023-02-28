@@ -12,7 +12,7 @@ import { Cart, Cartegories } from "./";
 import { useStateContext } from "../context/StateContext";
 
 const NormalNavbar = ({ visible, scrollTop }) => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
   const {
     showCart,
     setShowCart,
@@ -23,7 +23,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
   } = useStateContext();
 
   return (
-    <div>
+    <div className={`${scrollTop > 100 ? "lg:hidden" : ""} lg:block  hidden `}>
       <div className="flex flex-col w-full  ">
         <div className="flex items-center justify-between border-b border-gray-300 py-4 px-12">
           <h1 className="logo text-2xl font-bold hover:scale-110 transition-all duration-300">
@@ -49,7 +49,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
               onClick={() => setShowCart(!showCart)}
             >
               <AiOutlineShopping />
-              <span className="absolute text-[#eee] bg-[#f02d34] text-xs w-4 h-4 rounded-lg text-center font-semibold right-[-6px]">
+              <span className="absolute text-[#eee] bg-[#f02d34] text-xs w-4 h-4 rounded-lg text-center font-semibold top-1 right-[-6px]">
                 {totalQuantities}
               </span>
             </button>
@@ -62,17 +62,17 @@ const NormalNavbar = ({ visible, scrollTop }) => {
         <div className="flex gap-8  items-center links">
           <Link href={"/"}>
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              DAILY DISCOVERY
+              KITCHEN GADGETS
             </h3>
           </Link>
           <Link href={"/"} className="font-medium hover:text-gray-900">
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              SHOP BY COLLECTION
+              HOME STUFFS
             </h3>
           </Link>
           <Link href={"/"} className="font-medium hover:text-gray-900">
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              MEN
+              GIFT IDEAS
             </h3>
           </Link>
           <Link href={"/"} className="font-medium hover:text-gray-900">
@@ -82,12 +82,12 @@ const NormalNavbar = ({ visible, scrollTop }) => {
           </Link>
           <Link href={"/"} className="font-medium hover:text-gray-900">
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              KIDS
+              SALES
             </h3>
           </Link>
           <Link href={"/"} className="font-medium hover:text-gray-900">
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              BED &amp; BATH
+              TRACK YOUR ORDER
             </h3>
           </Link>
         </div>
@@ -100,7 +100,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
           <span className="border-r-2 border-gray-400 h-4"></span>
           <Link href={"/"} className="font-medium hover:text-gray-900">
             <h3 className="font-bold text-black text-sm hover:text-gray-700">
-              SELL ON MAVIGADGET
+              CONTACT US
             </h3>
           </Link>
         </div>

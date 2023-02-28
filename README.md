@@ -3,6 +3,7 @@
 This is an e-commerce web application built with Next.js, SCSS, and Sanity CMS. Detroit Store allows users to browse and purchase products online. The application provides a user-friendly interface, responsive design, and seamless checkout process.
 
 [ecommerce-store-pied-psi.vercel.app](ecommerce-store-pied-psi.vercel.app)
+![Screenshot of Ulta Beauty](Screenshot.png)
 ## Table of Contents
 
 - Features
