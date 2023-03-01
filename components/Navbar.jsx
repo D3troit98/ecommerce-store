@@ -9,16 +9,23 @@ import {
   NormalNavbar,
   ScrollingNavbar,
 } from "./";
-
+import { useStateContext } from "../context/StateContext";
 const Navbar = ({ visible, scrollTop }) => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-
+  const {
+    showCart,
+    setShowCart,
+    totalQuantities,
+    handleDropdownToggle,
+    isDropdownOpen,
+    setIsDropdownOpen,
+  } = useStateContext();
   return (
     <div>
-      <div className="normal-navbar">
+      <div className="normal-navbar ">
         <NormalNavbar visible={visible} scrollTop={scrollTop} />
         <MobileNavbar visible={visible} scrollTop={scrollTop} />
         <ScrollingNavbar visible={visible} scrollTop={scrollTop} />
+        {showCart && <Cart />}
       </div>
     </div>
   );
