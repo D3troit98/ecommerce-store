@@ -82,7 +82,6 @@ const ScrollingNavbar = ({ visible, scrollTop }) => {
                 {totalQuantities}
               </span>
             </button>
-            {showCart && <Cart />}
           </div>
         </div>
       </div>
