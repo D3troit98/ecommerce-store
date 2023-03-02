@@ -1,10 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from "react"
-
-import { toast } from 'react-hot-toast'
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import {
   auth,
-  signInWithEmailandPassword,
+  registerWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  logInWithEmailAndPassword,
   signInWithGoogle,
+  db,
+  logout,
 } from "./../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 const context = createContext();
@@ -21,6 +25,7 @@ export const StateContext = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
+  const [name, setName] = useState("");
 
   let foundProduct;
   let index;
@@ -144,6 +149,12 @@ export const StateContext = ({ children }) => {
         user,
         loading,
         error,
+        logInWithEmailAndPassword,
+        signInWithGoogle,
+        name,
+        setName,
+        db,
+        logout,
       }}
     >
       {children}
@@ -151,4 +162,4 @@ export const StateContext = ({ children }) => {
   );
 };
 
-export const useStateContext = () => useContext(context)
+export const useStateContext = () => useContext(context);

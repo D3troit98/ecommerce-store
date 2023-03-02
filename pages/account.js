@@ -1,9 +1,9 @@
-import { Account } from "../components";
+import Login from "../components/Auth/Login";
 
 export default function AccountPage() {
   return (
     <div>
-      <Account />
+      <Login />
     </div>
   );
 }

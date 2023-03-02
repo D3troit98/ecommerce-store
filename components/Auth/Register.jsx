@@ -3,22 +3,32 @@ import Link from "next/link";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const Login = () => {
+const Register = () => {
   const {
-    user,
     loading,
-    error,
+    user,
     email,
     password,
+    signInWithGoogle,
     setEmail,
     setPassword,
-    logInWithEmailAndPassword,
-    signInWithGoogle,
+    name,
+    setName,
+    registerWithEmailAndPassword,
   } = useStateContext();
   const router = useRouter();
+  const register = () => {
+    if (!name) {
+      toast.info("Please enter name", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      registerWithEmailAndPassword(name, email, password);
+    }
+  };
+
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
@@ -32,41 +42,41 @@ const Login = () => {
       {loading ? (
         <LoadingScreen />
       ) : (
-        <div className="login">
+        <div className="register">
           <ToastContainer />
-          <div className="login__container">
+          <div className="register__container">
             <input
               type="text"
-              className="login__textBox"
+              className="register__textBox"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+            />
+            <input
+              type="text"
+              className="register__textBox"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="E-mail Address"
             />
             <input
               type="password"
-              className="login__textBox"
+              className="register__textBox"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <button
-              className="login__btn"
-              onClick={() => logInWithEmailAndPassword(email, password)}
-            >
-              Login
+            <button className="register__btn" onClick={register}>
+              Register
             </button>
             <button
-              className="login__btn login__google"
+              className="register__btn register__google"
               onClick={signInWithGoogle}
             >
-              Login with Google
+              Register with Google
             </button>
             <div>
-              <Link href={"/reset"}>Forgot Password</Link>
-            </div>
-            <div>
-              Don't have an account? <Link href={"/register"}>Register</Link>{" "}
-              now.
+              Already have an account? <Link href={"/"}>Login</Link> now.
             </div>
           </div>
         </div>
@@ -75,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
