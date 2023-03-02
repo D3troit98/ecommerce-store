@@ -36,21 +36,28 @@ const Dashboard = () => {
     if (loading) {
       // maybe trigger a loading screen
       return;
-    } else if (user) {
+    } else if (!user) {
       router.push("/account");
     }
+    console.log(user);
   }, [user, loading, router]);
   return (
-    <div className="dashboard">
-      <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <div className="dashboard">
+          <div className="dashboard__container">
+            Logged in as
+            <div>{name}</div>
+            <div>{user?.email}</div>
+            <button className="dashboard__btn" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

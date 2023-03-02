@@ -21,12 +21,13 @@ const Register = () => {
   } = useStateContext();
   const router = useRouter();
   const register = () => {
+    console.log("registering");
     if (!name) {
       toast.info("Please enter name", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.TOP_CENTER,
       });
-      registerWithEmailAndPassword(name, email, password);
     }
+    registerWithEmailAndPassword(name, email, password);
   };
 
   useEffect(() => {

@@ -40,6 +40,7 @@ This is an e-commerce web application built with Next.js, SCSS, and Sanity CMS. 
 - Next.js
 - SCSS
 - Sanity CMS
+- Firebase
 
 ## Contributing
 

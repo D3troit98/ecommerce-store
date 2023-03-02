@@ -155,6 +155,7 @@ export const StateContext = ({ children }) => {
         setName,
         db,
         logout,
+        registerWithEmailAndPassword,
       }}
     >
       {children}
