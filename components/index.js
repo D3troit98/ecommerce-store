@@ -12,3 +12,5 @@ export {default as FeatureSection} from './FeatureSection.jsx'
 export { default as NormalNavbar } from "./NormalNavbar.jsx";
 export { default as MobileNavbar } from "./MobileNavbar";
 export { default as ScrollingNavbar } from "./ScrollingNavbar";
+export { default as Account } from "./Account";
+export { default as LoadingScreen } from "./LoadingScreen";

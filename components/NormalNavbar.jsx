@@ -44,7 +44,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 </div>
               </div>
               <h1 className="logo mr-1 ml-1 text-sm font-semibold hover:scale-110 transition-all duration-300">
-                <Link href={"/"}>MY ACCOUNT</Link>
+                <Link href={"/account"}>MY ACCOUNT</Link>
               </h1>
               <div className="gap flex justify-center items-center ">
                 <button
