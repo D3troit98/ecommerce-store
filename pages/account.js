@@ -1,9 +1,17 @@
 import Login from "../components/Auth/Login";
-
-export default function AccountPage() {
+import { client } from "../lib/client";
+export default function AccountPage({ bannerData }) {
   return (
     <div>
-      <Login />
+      <Login heroBanner={bannerData.length && bannerData[0]} />
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+  return {
+    props: { bannerData },
+  };
+};
