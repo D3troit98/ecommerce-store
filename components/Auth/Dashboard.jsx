@@ -3,9 +3,13 @@ import Link from "next/link";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
+import { ToastContainer, toast } from "react-toastify";
+import { urlFor } from "../../lib/client";
 
+import "react-toastify/dist/ReactToastify.css";
 import { query, collection, getDocs, where } from "firebase/firestore";
-const Dashboard = () => {
+
+const Dashboard = ({ heroBanner }) => {
   const {
     loading,
     user,
@@ -28,7 +32,9 @@ const Dashboard = () => {
       setName(data.name);
     } catch (err) {
       console.error(err);
-      alert("An error occured while fetching user data");
+      toast.error("An error occured while fetching user data", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
@@ -43,17 +49,44 @@ const Dashboard = () => {
   }, [user, loading, router]);
   return (
     <>
-      {loading ? (
+      {loading || !heroBanner || !user ? (
         <LoadingScreen />
       ) : (
-        <div className="dashboard">
-          <div className="dashboard__container">
-            Logged in as
-            <div>{name}</div>
-            <div>{user?.email}</div>
-            <button className="dashboard__btn" onClick={logout}>
-              Logout
-            </button>
+        <div>
+          <ToastContainer />
+          <div className={`hero-banner-container `}>
+            <div className="hero-banner-margin">
+              <p className="beats-solo">Discover something unique</p>
+              <h3>Detroit Store</h3>
+              <h1>MY ACCOUNT</h1>
+              <img
+                src={urlFor(heroBanner?.image)}
+                alt="headphones"
+                className="hero-banner-image"
+              />
+              <div>
+                <Link href={`/home`}>
+                  <button type="button">Home</button>
+                </Link>
+                <div className="desc">
+                  <h5>Welcome</h5>
+                  <p>Sign in into your Account</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* dashboards */}
+
+          <div className="dashboard">
+            <div className="dashboard__container">
+              Logged in as
+              <div>{name}</div>
+              <div>{user?.email}</div>
+              <button className="dashboard__btn" onClick={logout}>
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       )}
