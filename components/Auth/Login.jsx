@@ -59,13 +59,15 @@ const Login = ({ heroBanner }) => {
             </div>
           </div>
 
-          <div className="flex items-start justify-center  mt-8 w-full h-auto">
-            <div className="flex flex-col w-1/3 border-r border-gray-400 pr-10 py-4 ">
-              <h1 className="text-2xl font-semibold text-gray-900">LOGIN</h1>
-              <div className="my-4">
+          <div className="flex flex-col md:flex-row items-start justify-center  mt-4 md:mt-8 w-full h-auto">
+            <div className="flex flex-col w-full md:w-1/3 md:border-r border-gray-400 md:pr-10 py-4 px-2">
+              <h1 className="md:text-2xl text-xl font-semibold text-gray-900">
+                LOGIN
+              </h1>
+              <div className="md:my-4 my-2">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-xs md:text-sm font-medium text-gray-700"
                 >
                   Email Address
                 </label>
@@ -79,10 +81,10 @@ const Login = ({ heroBanner }) => {
                 />
               </div>
 
-              <div className="my-3">
+              <div className="md:my-3">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-xs md:text-sm font-medium  text-gray-700"
                 >
                   Password
                 </label>
@@ -153,22 +155,24 @@ const Login = ({ heroBanner }) => {
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900"
+                    className="ml-2 block text-xs text-gray-900"
                   >
                     Remember me
                   </label>
                 </div>
                 <Link href={"/reset"}>
-                  <p className="text-sm cursor-pointer text-red-600 hover:text-red-500">
+                  <p className="text-xs cursor-pointer text-red-600 hover:text-red-500">
                     Lost your password?
                   </p>
                 </Link>
               </div>
             </div>
 
-            <div className="flex justify-start items-center flex-col pl-10 py-4  w-1/3">
-              <h1 className="text-2xl font-semibold text-gray-900">REGISTER</h1>
-              <p className="text-sm text-[#777777]">
+            <div className="flex justify-start items-center flex-col md:pl-10 py-4 w-full px-1  md:w-1/3">
+              <h1 className="md:text-2xl text-xl font-semibold text-gray-900">
+                REGISTER
+              </h1>
+              <p className="text-xs md:text-sm text-[#777777]">
                 Registering for this site allows you to access your order status
                 and history. Just fill in the fields below, and we'll get a new
                 account set up for you in no time. We will only ask you for
