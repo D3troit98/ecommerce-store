@@ -26,6 +26,7 @@ export const StateContext = ({ children }) => {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [activeLink, setActiveLink] = useState("Dashboard");
 
   let foundProduct;
   let index;
@@ -116,6 +117,10 @@ export const StateContext = ({ children }) => {
     setActiveTab(tab);
   };
 
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <context.Provider
       value={{
@@ -156,6 +161,8 @@ export const StateContext = ({ children }) => {
         db,
         logout,
         registerWithEmailAndPassword,
+        handleLinkClick,
+        activeLink,
       }}
     >
       {children}
