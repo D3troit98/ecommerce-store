@@ -10,6 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Sidebar from "./Sidebar";
 import DashBoardDetails from "./DashBoardDetails";
+import Inbox from "./Inbox";
+import Orders from "./Orders";
+import Subscription from "./Subscription";
+import RequestQuotes from "./RequestQuotes";
+import NewsletterPreferences from "./NewsletterPreferences";
+import GiftCards from "./GiftCards";
+import Addresses from "./Addresses";
 
 const Dashboard = ({ heroBanner }) => {
   const {
@@ -97,30 +104,43 @@ const Dashboard = ({ heroBanner }) => {
                   />
                 </div>
               )}
-              {activeLink === "Inbox" && <div>Pre-orders Content</div>}
-              {activeLink === "Orders" && <div>Orders Content</div>}
+              {activeLink === "Inbox" && (
+                <div>
+                  <Inbox />
+                </div>
+              )}
+              {activeLink === "Orders" && (
+                <div>
+                  <Orders />
+                </div>
+              )}
               {activeLink === "Subscriptions" && (
-                <div>Subscriptions Content</div>
+                <div>
+                  <Subscription />
+                </div>
               )}
               {activeLink === "Request Quotes" && (
-                <div>Request Quotes Content</div>
+                <div>
+                  <RequestQuotes />
+                </div>
               )}
               {activeLink === "Newsletter Preferences" && (
-                <div>RMA Requests Content</div>
+                <div>
+                  <NewsletterPreferences />
+                </div>
               )}
-              {activeLink === "Gift Cards" && <div>Gift Cards Content</div>}
-              {activeLink === "Downloads" && <div>Downloads Content</div>}
-              {activeLink === "Addresses" && <div>Addresses Content</div>}
-              {activeLink === "Payment methods" && (
-                <div>Payment methods Content</div>
+              {activeLink === "Gift Cards" && (
+                <div>
+                  /<GiftCards />
+                </div>
               )}
-              {activeLink === "Account details" && (
-                <div>Account details Content</div>
+
+              {activeLink === "Addresses" && (
+                <div>
+                  <Addresses />
+                </div>
               )}
-              {activeLink === "Vendors" && <div>Vendors Content</div>}
-              {activeLink === "Seller Support Tickets" && (
-                <div>Seller Support Tickets Content</div>
-              )}
+
               {activeLink === "Wishlist" && <div>Wishlist Content</div>}
               {activeLink === "Logout" && <div>Logout Content</div>}
             </div>

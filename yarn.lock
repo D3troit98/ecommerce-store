@@ -529,6 +529,11 @@
     protobufjs "^7.0.0"
     yargs "^16.2.0"
 
+"@heroicons/react@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@heroicons/react/-/react-1.0.6.tgz"
+  integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.10.4.tgz"

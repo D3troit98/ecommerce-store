@@ -59,11 +59,11 @@ const Sidebar = ({ handleLinkClick, activeLink }) => {
           <li
             className={`px-4 py-2 cursor-pointer
                 ${
-                  activeLink === " Newsletter Preferences"
+                  activeLink === "Newsletter Preferences"
                     ? "bg-gray-800"
                     : "hover:bg-gray-800"
                 }`}
-            onClick={() => handleLinkClick(" Newsletter Preferences")}
+            onClick={() => handleLinkClick("Newsletter Preferences")}
           >
             Newsletter Preferences
           </li>
