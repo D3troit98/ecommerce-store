@@ -57,8 +57,10 @@ const Addresses = () => {
   };
 
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-medium mb-4">Addresses</h2>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="text-lg leading-6 font-medium text-gray-900 mb-6">
+        Addresses
+      </h2>
       <div className="flex flex-col space-y-4">
         {addresses.map((address) => (
           <AddressCard

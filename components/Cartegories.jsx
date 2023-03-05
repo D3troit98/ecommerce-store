@@ -14,23 +14,32 @@ const Cartegories = () => {
           onClick={() => setIsDropdownOpen(false)}
         >
           <AiOutlineLeft />
-         
         </button>
         <div className="category-search-container">
-        
-        <input
-        type="search"
-        placeholder="Search for products"
-        className="category-input"
-        />
-         <AiOutlineSearch className="category-icon" />
+          <input
+            type="search"
+            placeholder="Search for products"
+            className="category-input"
+          />
+          <AiOutlineSearch className="category-icon" />
         </div>
         <div className="tab-container">
-          <button className={`tab ${activeTab === "menu" ? "active animate" : "inactivr"}`} onClick={() => handleTabChange("menu")}>Menu</button>
-          <button className={`tab ${activeTab === "categories" ? "active animate" : "inactivr"}`}onClick={() => handleTabChange("categories")}>
+          <button
+            className={`tab ${
+              activeTab === "menu" ? "active animate" : "inactivr"
+            }`}
+            onClick={() => handleTabChange("menu")}
+          >
+            Menu
+          </button>
+          <button
+            className={`tab ${
+              activeTab === "categories" ? "active animate" : "inactivr"
+            }`}
+            onClick={() => handleTabChange("categories")}
+          >
             Categories
           </button>
-        
         </div>
         <div className="menu-items">
           {activeTab === "menu" && (
@@ -78,14 +87,14 @@ const Cartegories = () => {
                 <Link href="/kitchen-gadgets">Kitchen Gadgets</Link>
               </li>
               <li>
-                <Link href="/home-stuff">Home Stuff</Link>
+                <Link href="/-stuff">Home Stuff</Link>
               </li>
               <li>
                 <Link href="/gift-ideas">Gift Ideas</Link>
               </li>
             </ul>
           )}
-          </div>
+        </div>
       </div>
     </div>
   );

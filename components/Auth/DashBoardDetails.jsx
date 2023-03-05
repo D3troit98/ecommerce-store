@@ -53,7 +53,7 @@ const DashBoardDetails = ({ handleLinkClick, activeLink }) => {
               You are currently not subscribed to any of our newsletters.
             </div>
             <button
-              className="mt-4 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg"
+              className="mt-4 bg-[#f02d34] hover:bg-red-500 text-white font-medium py-2 px-4 rounded-lg"
               type="button"
               onClick={() => handleLinkClick(" Newsletter Preferences")}
             >

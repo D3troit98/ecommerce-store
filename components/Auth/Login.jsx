@@ -48,7 +48,7 @@ const Login = ({ heroBanner }) => {
                 className="hero-banner-image"
               />
               <div>
-                <Link href={`/home`}>
+                <Link href={`/`}>
                   <button type="button">Home</button>
                 </Link>
                 <div className="desc">

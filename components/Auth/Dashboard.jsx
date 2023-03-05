@@ -76,7 +76,7 @@ const Dashboard = ({ heroBanner }) => {
                 className="hero-banner-image"
               />
               <div>
-                <Link href={`/home`}>
+                <Link href={`/`}>
                   <button type="button">Home</button>
                 </Link>
                 <div className="desc">
@@ -88,7 +88,7 @@ const Dashboard = ({ heroBanner }) => {
           </div>
 
           {/* sidebars with dashboards */}
-          <div className="flex">
+          <div className=" flex flex-col md:flex-row justify-center items-center md:items-start mt-4 rounded-lg ">
             <Sidebar
               handleLinkClick={handleLinkClick}
               activeLink={activeLink}
@@ -131,7 +131,7 @@ const Dashboard = ({ heroBanner }) => {
               )}
               {activeLink === "Gift Cards" && (
                 <div>
-                  /<GiftCards />
+                  <GiftCards />
                 </div>
               )}
 

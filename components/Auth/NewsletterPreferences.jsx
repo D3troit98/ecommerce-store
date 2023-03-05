@@ -4,8 +4,10 @@ const NewsletterPreferences = () => {
   const subscribedNewsletters = []; // change to add subscribed newsletters data to see how it looks
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">Newsletter Preferences</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="text-lg leading-6 font-medium text-gray-900 mb-6">
+        Newsletter Preferences
+      </h2>
       {subscribedNewsletters.length > 0 ? (
         <div className="bg-gray-100 rounded-lg px-4 py-2 mb-4">
           <p className="text-gray-800 font-bold mb-2">
@@ -16,7 +18,7 @@ const NewsletterPreferences = () => {
               <li key={newsletter.id}>{newsletter.name}</li>
             ))}
           </ul>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-full mt-4 hover:bg-blue-600 transition duration-200">
+          <button className="bg-[#f02d34] text-white py-2 px-4 rounded-full mt-4 hover:bg-red-500 transition duration-200">
             Edit Newsletter Preferences
           </button>
         </div>
@@ -40,7 +42,7 @@ const NewsletterPreferences = () => {
           <p className="text-sm">
             Click the button below to subscribe to our newsletters.
           </p>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-full mt-4 hover:bg-blue-600 transition duration-200">
+          <button className="bg-[#f02d34] text-white py-2 px-4 rounded-full mt-4 hover:bg-red-500 transition duration-200">
             Edit Newsletter Preferences
           </button>
         </div>
