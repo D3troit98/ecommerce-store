@@ -17,8 +17,9 @@ const Cart = () => {
     setShowCart,
     toggleCartItemQuantity,
     onRemove,
+    user
   } = useStateContext();
-
+  console.log(cartItems)
   const handleCheckout = async () => {
     const stripe = await getStripe();
 
@@ -119,10 +120,16 @@ const Cart = () => {
               <h3>₦{totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" onClick={handleCheckout}>
-                Pay with Stripe
-              </button>
-              <FlutterButton />
+              {user?  <FlutterButton /> :
+              <div>
+                <Link href="/dashboard">
+                  <button type="button" className="btn">
+                SIGN IN
+                </button>
+                </Link>
+              </div>
+             
+}
             </div>
           </div>
         )}

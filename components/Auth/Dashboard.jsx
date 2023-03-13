@@ -52,7 +52,6 @@ const Dashboard = ({ heroBanner }) => {
     } else if (!user) {
       router.push("/account");
     }
-    console.log(user);
     fetchUserName();
   }, [user, loading, router]);
   return (
