@@ -1,6 +1,8 @@
 import React from "react";
+import { useStateContext } from "../../context/StateContext";
 
-const DashBoardDetails = ({ handleLinkClick, activeLink }) => {
+const DashBoardDetails = ({ handleLinkClick }) => {
+  const { user } = useStateContext();
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Account Overview header */}
@@ -15,10 +17,16 @@ const DashBoardDetails = ({ handleLinkClick, activeLink }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Account details
             </h3>
-            <div className="text-gray-600 mb-2">Name: John Doe</div>
-            <div className="text-gray-600 mb-4">Email: john@example.com</div>
+            <div className="text-gray-600 mb-2">
+              {user.providerData[0].displayName
+                ? "Name: " + user.providerData[0].displayName
+                : ""}
+            </div>
+            <div className="text-gray-600 mb-4">
+              Email: {user.providerData[0].email}
+            </div>
             <div className="text-gray-600">Detroit Store Credit:</div>
-            <div className="text-gray-600">Dummy text</div>
+            <div className="text-gray-600">0</div>
           </div>
         </div>
         <div className="w-full md:w-1/2 px-4">
@@ -26,10 +34,10 @@ const DashBoardDetails = ({ handleLinkClick, activeLink }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Address book
             </h3>
-            <div className="text-gray-600 mb-2">
+            {/* <div className="text-gray-600 mb-2">
               Your default shipping address:
-            </div>
-            <div className="text-gray-600 mb-4">Dummy address</div>
+            </div> */}
+            {/* <div className="text-gray-600 mb-4">14 Abelogi </div> */}
           </div>
         </div>
       </div>
@@ -41,7 +49,7 @@ const DashBoardDetails = ({ handleLinkClick, activeLink }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Detroit Store Credit
             </h3>
-            <div className="text-gray-600">Dummy text</div>
+            <div className="text-gray-600">0</div>
           </div>
         </div>
         <div className="w-full md:w-1/2 px-4">

@@ -118,11 +118,11 @@ const Sidebar = ({ handleLinkClick, activeLink }) => {
       {/* small screeen */}
 
       <div
-        className="bg-[#dcdcdc] text-white w-64 flex-none h-auto flex flex-col lg:hidden  "
+        className="bg-[#dcdcdc] text-white w-64 flex-none h-auto flex flex-col md:hidden  "
         onMouseEnter={handleHover}
         onMouseLeave={handleLeave}
       >
-        <div className="p-4 text-xl font-bold">
+        <div className="p-4 flex justify-center items-center gap-1 text-xl font-bold">
           <p>MY ACCOUNT</p>
           <BiDownArrowAlt />
         </div>

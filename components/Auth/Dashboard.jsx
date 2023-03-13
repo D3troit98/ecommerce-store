@@ -22,14 +22,10 @@ const Dashboard = ({ heroBanner }) => {
   const {
     loading,
     user,
-    email,
-    password,
-    signInWithGoogle,
-    setEmail,
-    setPassword,
+    setName,
+    name,
     db,
     logout,
-    name,
     handleLinkClick,
     activeLink,
   } = useStateContext();
@@ -57,6 +53,7 @@ const Dashboard = ({ heroBanner }) => {
       router.push("/account");
     }
     console.log(user);
+    fetchUserName();
   }, [user, loading, router]);
   return (
     <>
@@ -81,7 +78,11 @@ const Dashboard = ({ heroBanner }) => {
                 </Link>
                 <div className="desc">
                   <h5>Welcome</h5>
-                  <p>Sign in into your Account</p>
+                  <p>
+                    {user
+                      ? user.providerData[0].email
+                      : "Sign in into your Account"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -142,7 +143,7 @@ const Dashboard = ({ heroBanner }) => {
               )}
 
               {activeLink === "Wishlist" && <div>Wishlist Content</div>}
-              {activeLink === "Logout" && <div>Logout Content</div>}
+              {activeLink === "Logout" && logout()}
             </div>
           </div>
         </div>

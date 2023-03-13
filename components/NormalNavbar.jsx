@@ -63,7 +63,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
 
           <div className="flex justify-between items-center py-3 px-12 border-b border-gray-300">
             <div className="flex gap-8  items-center links">
-              <Link href={"/"}>
+              <Link href={"/kitchen"}>
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   KITCHEN GADGETS
                 </h3>
