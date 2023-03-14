@@ -10,6 +10,7 @@ import {
   db,
   logout,
 } from "./../lib/firebase";
+import { client } from "../lib/client";
 import { useAuthState } from "react-firebase-hooks/auth";
 const context = createContext();
 
@@ -27,7 +28,24 @@ export const StateContext = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [activeLink, setActiveLink] = useState("Dashboard");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
 
+  useEffect(() => {
+    console.log(user);
+    // const doc = {
+    //   _id: user.uid,
+    //   _type:'user',
+    //   name:user.displayName,
+    //   email:user.email,
+    //   phoneNumber: phoneNumber,
+    //   address:address
+    // }
+    // client.createIfNotExists(doc)
+    // .then(()=>{
+    //   router.push("/account");
+    // })
+  }, [user]);
   let foundProduct;
   let index;
   const onAdd = (product, quantity) => {

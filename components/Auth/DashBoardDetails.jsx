@@ -2,7 +2,7 @@ import React from "react";
 import { useStateContext } from "../../context/StateContext";
 
 const DashBoardDetails = ({ handleLinkClick }) => {
-  const { user } = useStateContext();
+  const { user, name, address } = useStateContext();
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Account Overview header */}
@@ -17,11 +17,7 @@ const DashBoardDetails = ({ handleLinkClick }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Account details
             </h3>
-            <div className="text-gray-600 mb-2">
-              {user.providerData[0].displayName
-                ? "Name: " + user.providerData[0].displayName
-                : ""}
-            </div>
+            <div className="text-gray-600 mb-2">Name: {name}</div>
             <div className="text-gray-600 mb-4">
               Email: {user.providerData[0].email}
             </div>
@@ -34,10 +30,10 @@ const DashBoardDetails = ({ handleLinkClick }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Address book
             </h3>
-            {/* <div className="text-gray-600 mb-2">
+            <div className="text-gray-600 mb-2">
               Your default shipping address:
-            </div> */}
-            {/* <div className="text-gray-600 mb-4">14 Abelogi </div> */}
+            </div>
+            <div className="text-gray-600 mb-4">{address}</div>
           </div>
         </div>
       </div>

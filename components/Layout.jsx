@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Navbar from "./Navbar";
@@ -10,15 +10,14 @@ const Layout = ({ children }) => {
   const [scrollTop, setScrollTop] = useState(0);
   const [visible, setVisible] = useState(true);
   const router = useRouter();
+  const topViewRef = useRef(null);
   const handleScroll = (event) => {
     const currentScrollTop = event.currentTarget.scrollTop;
     setVisible(scrollTop > currentScrollTop);
-    console.log("scrollTop", scrollTop);
     setScrollTop(currentScrollTop);
-    console.log(scrollTop);
   };
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    topViewRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -36,8 +35,11 @@ const Layout = ({ children }) => {
       <header>
         <Navbar scrollTop={scrollTop} visible={visible} />
       </header>
+    <div id="topView" ref={topViewRef}>
 
-      <main className="main-container">{children}</main>
+   
+      <main className="main-container" >{children}</main>
+      </div>
       <footer>
         <Footer />
       </footer>

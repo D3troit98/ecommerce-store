@@ -94,18 +94,6 @@ const Sidebar = ({ handleLinkClick, activeLink }) => {
           >
             Gift Cards
           </li>
-
-          <li
-            className={`px-4 py-2 cursor-pointer
-                ${
-                  activeLink === "Addresses"
-                    ? "bg-[#f02d34]"
-                    : "hover:bg-[#f02d34]"
-                }`}
-            onClick={() => handleLinkClick("Addresses")}
-          >
-            Addresses
-          </li>
           <li
             className="px-4 py-2 cursor-pointer  hover:bg-[#f02d34]"
             onClick={() => handleLinkClick("Logout")}
@@ -208,17 +196,6 @@ const Sidebar = ({ handleLinkClick, activeLink }) => {
               Gift Cards
             </li>
 
-            <li
-              className={`px-4 py-2 cursor-pointer
-                ${
-                  activeLink === "Addresses"
-                    ? "bg-[#f02d34]"
-                    : "hover:bg-[#f02d34]"
-                }`}
-              onClick={() => handleLinkClick("Addresses")}
-            >
-              Addresses
-            </li>
             <li
               className="px-4 py-2 cursor-pointer  hover:bg-[#f02d34]"
               onClick={() => handleLinkClick("Logout")}

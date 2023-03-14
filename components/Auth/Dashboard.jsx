@@ -16,7 +16,6 @@ import Subscription from "./Subscription";
 import RequestQuotes from "./RequestQuotes";
 import NewsletterPreferences from "./NewsletterPreferences";
 import GiftCards from "./GiftCards";
-import Addresses from "./Addresses";
 
 const Dashboard = ({ heroBanner }) => {
   const {
@@ -40,7 +39,7 @@ const Dashboard = ({ heroBanner }) => {
     } catch (err) {
       console.error(err);
       toast.error("An error occured while fetching user data", {
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.BOTTOM_LEFT,
       });
     }
   };
@@ -50,10 +49,12 @@ const Dashboard = ({ heroBanner }) => {
       // maybe trigger a loading screen
       return;
     } else if (!user) {
+      console.log("there is no user");
       router.push("/account");
+    } else {
+      fetchUserName();
     }
-    fetchUserName();
-  }, [user, loading, router]);
+  }, [user]);
   return (
     <>
       {loading || !heroBanner || !user ? (
@@ -132,12 +133,6 @@ const Dashboard = ({ heroBanner }) => {
               {activeLink === "Gift Cards" && (
                 <div>
                   <GiftCards />
-                </div>
-              )}
-
-              {activeLink === "Addresses" && (
-                <div>
-                  <Addresses />
                 </div>
               )}
 
