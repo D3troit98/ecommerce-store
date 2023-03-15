@@ -1,9 +1,8 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Product, FooterBanner, HeroBanner, EcommerceHeader, NewsletterSubscribe,FeatureSection } from '../components'
 import { client } from '../lib/client'
 const Home = ({products, bannerData}) => {
   const [loadMore, setLoadMore] = useState(true);
-
   
   const handleLoadMore = () => {
     // Fetch more products and update the products state

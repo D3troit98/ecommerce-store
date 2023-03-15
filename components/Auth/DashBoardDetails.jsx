@@ -1,8 +1,19 @@
 import React from "react";
 import { useStateContext } from "../../context/StateContext";
-
+import { MdModeEdit } from "react-icons/md";
 const DashBoardDetails = ({ handleLinkClick }) => {
-  const { user, name, address } = useStateContext();
+  const {
+    user,
+    name,
+    phoneNumber,
+    setPhoneNumber,
+    address,
+    setAddress,
+    setAddressSave,
+    setPhoneNumberSave,
+    addressSave,
+    phoneNumbersave,
+  } = useStateContext();
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Account Overview header */}
@@ -18,9 +29,7 @@ const DashBoardDetails = ({ handleLinkClick }) => {
               Account details
             </h3>
             <div className="text-gray-600 mb-2">Name: {name}</div>
-            <div className="text-gray-600 mb-4">
-              Email: {user.providerData[0].email}
-            </div>
+            <div className="text-gray-600 mb-4">Email: {user.email}</div>
             <div className="text-gray-600">Detroit Store Credit:</div>
             <div className="text-gray-600">0</div>
           </div>
@@ -30,10 +39,76 @@ const DashBoardDetails = ({ handleLinkClick }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
               Address book
             </h3>
-            <div className="text-gray-600 mb-2">
-              Your default shipping address:
-            </div>
-            <div className="text-gray-600 mb-4">{address}</div>
+            {addressSave ? (
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="text-gray-600 mb-2">
+                    Your default shipping address:
+                  </p>
+
+                  <button
+                    className="text-gray-600 hover:underline"
+                    onClick={() => setAddressSave(false)}
+                  >
+                    <MdModeEdit />
+                  </button>
+                </div>
+                <div className="text-gray-600 mb-4">{address}</div>
+              </div>
+            ) : (
+              <div>
+                <div className="text-gray-600 mb-2">
+                  Enter your default shipping address:
+                </div>
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Address"
+                  className="mb-2 shadow appearance-none border rounded w-10/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <button
+                  className="bg-[#f02d34] hover:bg-red-500 text-white font-medium py-2 px-4 rounded-r-md"
+                  onClick={() => setAddressSave(true)}
+                >
+                  Save
+                </button>
+              </div>
+            )}
+            {phoneNumbersave ? (
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="text-gray-600 mb-2">Your Phone Number:</p>
+
+                  <button
+                    className="text-gray-600 hover:underline"
+                    onClick={() => setPhoneNumberSave(false)}
+                  >
+                    <MdModeEdit />
+                  </button>
+                </div>
+                <div className="text-gray-600 mb-4">{phoneNumber}</div>
+              </div>
+            ) : (
+              <div>
+                <div className="text-gray-600 mb-2">
+                  Enter your Phone Number:
+                </div>
+                <input
+                  type="text"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="Phone Number"
+                  className="mb-2 shadow appearance-none border rounded w-10/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <button
+                  className="bg-[#f02d34] hover:bg-red-500 text-white font-medium py-2 px-4 rounded-r-md"
+                  onClick={() => setPhoneNumberSave(true)}
+                >
+                  Save
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

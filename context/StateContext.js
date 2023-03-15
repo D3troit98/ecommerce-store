@@ -30,22 +30,50 @@ export const StateContext = ({ children }) => {
   const [activeLink, setActiveLink] = useState("Dashboard");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [addressSave, setAddressSave] = useState(
+    address.length > 1 ? true : false
+  );
+  const [phoneNumbersave, setPhoneNumberSave] = useState(
+    phoneNumber.length > 1 ? true : false
+  );
 
   useEffect(() => {
-    console.log(user);
-    // const doc = {
-    //   _id: user.uid,
-    //   _type:'user',
-    //   name:user.displayName,
-    //   email:user.email,
-    //   phoneNumber: phoneNumber,
-    //   address:address
-    // }
-    // client.createIfNotExists(doc)
-    // .then(()=>{
-    //   router.push("/account");
-    // })
+    if (user) {
+      client
+        .fetch(`*[_type == "user" && _id == "${user.uid}"][0]`)
+        .then((userData) => {
+          console.log("User data:", userData);
+          setPhoneNumber(userData.phoneNumber);
+          if (userData.phoneNumber.length > 1) setPhoneNumberSave(true);
+          setAddress(userData.address);
+          if (userData.address.length > 1) setAddressSave(true);
+        })
+        .catch((error) => {
+          console.error("Fetch failed: ", error.message);
+        });
+    }
   }, [user]);
+  useEffect(() => {
+    if ((user && addressSave) || (user && phoneNumbersave)) {
+      const doc = {
+        _id: user.uid,
+        _type: "user",
+        name: user.displayName,
+        email: user.email,
+        phoneNumber: phoneNumber,
+        address: address,
+      };
+      client
+        .createOrReplace(doc)
+        .then((result) => {
+          console.log(`Document ID is ${result._id}`);
+        })
+        .catch((error) => {
+          console.error("Create failed: ", error.message);
+        });
+    }
+  }, [addressSave, phoneNumbersave]);
+
   let foundProduct;
   let index;
   const onAdd = (product, quantity) => {
@@ -180,6 +208,15 @@ export const StateContext = ({ children }) => {
         registerWithEmailAndPassword,
         handleLinkClick,
         activeLink,
+
+        phoneNumber,
+        setPhoneNumber,
+        address,
+        setAddress,
+        addressSave,
+        phoneNumbersave,
+        setAddressSave,
+        setPhoneNumberSave,
       }}
     >
       {children}
