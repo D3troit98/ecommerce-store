@@ -5,14 +5,12 @@ import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
 import { ToastContainer, toast } from "react-toastify";
 import { urlFor } from "../../lib/client";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../lib/firebase";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ heroBanner }) => {
   const {
-    user,
-    loading,
-    error,
     email,
     password,
     setEmail,
@@ -22,13 +20,12 @@ const Login = ({ heroBanner }) => {
   } = useStateContext();
 
   const router = useRouter();
+  const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    console.log("useEffect called");
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    } else if (user) {
+    console.log("login effect called");
+    if (!loading && user) {
       router.push("/dashboard");
+      return;
     }
   }, [user, loading, router]);
   return (
@@ -180,10 +177,14 @@ const Login = ({ heroBanner }) => {
                 information necessary to make the purchase process faster and
                 easier.
               </p>
-              <div className="flex justify-center items-center w-1/2 mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer">
-                <Link href={"/register"}>
+              <div
+                className="flex justify-center items-center w-1/2 mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer"
+                onClick={() => console.log(user)}
+              >
+                {/* <Link href={"/register"}>
                   <h3>REGISTER</h3>
-                </Link>
+                </Link> */}
+                <h3>REGISTER</h3>
               </div>
             </div>
           </div>

@@ -36,190 +36,229 @@ export const StateContext = ({ children }) => {
   const [phoneNumbersave, setPhoneNumberSave] = useState(
     phoneNumber.length > 1 ? true : false
   );
-const [sanityUser, setSanityUser] = useState(null);
-useEffect(() => {
-  if (user) {
-    client
-      .fetch(`*[_type == "user" && _id == "${user.uid}"][0]`)
-      .then((userData) => {
-        console.log("User data:", userData);
-        setSanityUser(userData);
-        setPhoneNumber(userData.phoneNumber);
-        if (userData.phoneNumber.length > 1) setPhoneNumberSave(true);
-        setAddress(userData.address);
-        if (userData.address.length > 1) setAddressSave(true);
-      })
-      .catch((error) => {
-        console.error("Fetch failed: ", error.message);
-      });
-  }
-}, [user]);
-useEffect(() => {
-  if ((user && addressSave) || (user && phoneNumbersave)) {
-    const doc = {
-      _id: user.uid,
-      _type: "user",
-      name: user.displayName,
-      email: user.email,
-      phoneNumber: phoneNumber,
-      address: address,
-    };
-    client
-      .createOrReplace(doc)
-      .then((result) => {
-        console.log(`Document ID is ${result._id}`);
-      })
-      .catch((error) => {
-        console.error("Create failed: ", error.message);
-      });
-  }
-}, [addressSave, phoneNumbersave]);
-
-let foundProduct;
-let index;
-const onAdd = (product, quantity) => {
-  const checkProductInCart = cartItems.find((item) => item._id === product._id);
-
-  setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
-  setTotalQuantities((prevTotalQuanties) => prevTotalQuanties + quantity);
-
-  if (checkProductInCart) {
-    const updatedCartItems = cartItems.map((cartProduct) => {
-      // console.log(cartProduct)
-      if (cartProduct?._id === product._id)
-        return {
-          ...cartProduct,
-          quantity: cartProduct.quantity + quantity,
+  const [sanityUser, setSanityUser] = useState(null);
+  useEffect(() => {
+    let userFoundInSanity = false;
+    if (user) {
+      console.log("user found in statecontext");
+      client
+        .fetch(`*[_type == "user" && _id == "${user.uid}"][0]`)
+        .then((userData) => {
+          console.log("User data:", userData);
+          if (userData) {
+            userFoundInSanity = true;
+          } else {
+            userFoundInSanity = false;
+          }
+          setSanityUser(userData);
+          setPhoneNumber(userData.phoneNumber);
+          if (userData.phoneNumber.length > 1) setPhoneNumberSave(true);
+          setAddress(userData.address);
+          if (userData.address.length > 1) setAddressSave(true);
+        })
+        .catch((error) => {
+          console.error("Fetch failed: ", error.message);
+          userFoundInSanity = false;
+        });
+      if (!userFoundInSanity) {
+        const doc = {
+          _id: user.uid,
+          _type: "user",
+          name: user.displayName ? user.displayName : name,
+          email: user.email,
+          phoneNumber: phoneNumber,
+          address: address,
         };
-    });
-    setCartItems(updatedCartItems);
-  } else {
-    product.quantity = quantity;
+        client
+          .createOrReplace(doc)
+          .then((result) => {
+            console.log(`Document ID is ${result._id}`);
+          })
+          .catch((error) => {
+            console.error("Create failed: ", error.message);
+          });
+      }
+    }
+  }, [user]);
 
-    setCartItems([...cartItems, { ...product }]);
-  }
-  toast.success(`${qty} ${product.name} added to the cart.`);
-};
+  useEffect(() => {
+    if ((user && addressSave) || (user && phoneNumber)) {
+      const doc = {
+        _id: user.uid,
+        _type: "user",
+        name: user.displayName ? user.displayName : name,
+        email: user.email,
+        phoneNumber: phoneNumber,
+        address: address,
+      };
+      client
+        .createOrReplace(doc)
+        .then((result) => {
+          console.log(`Document ID is ${result._id}`);
+        })
+        .catch((error) => {
+          console.error("Create failed: ", error.message);
+        });
+    }
+  }, [addressSave, phoneNumber]);
 
-const onRemove = (product) => {
-  foundProduct = cartItems.find((item) => item._id === product._id);
-  const newCartItems = cartItems
-    .sort()
-    .filter((item) => item._id !== product._id);
+  let foundProduct;
+  let index;
+  const onAdd = (product, quantity) => {
+    const checkProductInCart = cartItems.find(
+      (item) => item._id === product._id
+    );
 
-  setTotalPrice(
-    (prevTotalPrice) =>
-      prevTotalPrice - foundProduct.price * foundProduct.quantity
-  );
-  setTotalPrice(
-    (prevTotalQuanties) => prevTotalQuanties - foundProduct.quantity
-  );
-  setCartItems(newCartItems);
-};
-const toggleCartItemQuantity = (id, value) => {
-  foundProduct = cartItems.find((item) => item._id === id);
-  index = cartItems.findIndex((product) => product._id === id);
-  const newCartItems = cartItems.sort().filter((item) => item._id !== id);
+    setTotalPrice(
+      (prevTotalPrice) => prevTotalPrice + product.price * quantity
+    );
+    setTotalQuantities((prevTotalQuanties) => prevTotalQuanties + quantity);
 
-  if (value === "inc") {
-    setCartItems([
-      ...newCartItems,
-      { ...foundProduct, quantity: foundProduct.quantity + 1 },
-    ]);
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
-    setTotalQuantities((prevTotalQuanties) => prevTotalQuanties + 1);
-  } else if (value === "dec") {
-    if (foundProduct.quantity > 1) {
+    if (checkProductInCart) {
+      const updatedCartItems = cartItems.map((cartProduct) => {
+        // console.log(cartProduct)
+        if (cartProduct?._id === product._id)
+          return {
+            ...cartProduct,
+            quantity: cartProduct.quantity + quantity,
+          };
+      });
+      setCartItems(updatedCartItems);
+    } else {
+      product.quantity = quantity;
+
+      setCartItems([...cartItems, { ...product }]);
+    }
+    toast.success(`${qty} ${product.name} added to the cart.`);
+  };
+
+  const onRemove = (product) => {
+    foundProduct = cartItems.find((item) => item._id === product._id);
+    const newCartItems = cartItems
+      .sort()
+      .filter((item) => item._id !== product._id);
+
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundProduct.price * foundProduct.quantity
+    );
+    setTotalPrice(
+      (prevTotalQuanties) => prevTotalQuanties - foundProduct.quantity
+    );
+    setCartItems(newCartItems);
+  };
+  const toggleCartItemQuantity = (id, value) => {
+    foundProduct = cartItems.find((item) => item._id === id);
+    index = cartItems.findIndex((product) => product._id === id);
+    const newCartItems = cartItems.sort().filter((item) => item._id !== id);
+
+    if (value === "inc") {
       setCartItems([
         ...newCartItems,
-        { ...foundProduct, quantity: foundProduct.quantity - 1 },
+        { ...foundProduct, quantity: foundProduct.quantity + 1 },
       ]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
-      setTotalQuantities((prevTotalQuanties) => prevTotalQuanties - 1);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setTotalQuantities((prevTotalQuanties) => prevTotalQuanties + 1);
+    } else if (value === "dec") {
+      if (foundProduct.quantity > 1) {
+        setCartItems([
+          ...newCartItems,
+          { ...foundProduct, quantity: foundProduct.quantity - 1 },
+        ]);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setTotalQuantities((prevTotalQuanties) => prevTotalQuanties - 1);
+      }
     }
-  }
-};
+  };
 
-const incQt = () => {
-  setQty((prevQry) => prevQry + 1);
-};
+  const incQt = () => {
+    setQty((prevQry) => prevQry + 1);
+  };
 
-const deccQt = () => {
-  setQty((prevQry) => {
-    if (prevQry - 1 < 1) return 1;
-    return prevQry - 1;
-  });
-};
+  const deccQt = () => {
+    setQty((prevQry) => {
+      if (prevQry - 1 < 1) return 1;
+      return prevQry - 1;
+    });
+  };
 
-const handleDropdownToggle = () => {
-  setIsDropdownOpen((prevState) => !prevState);
-  console.log("dropdown", isDropdownOpen);
-};
-const handleTabChange = (tab) => {
-  setActiveTab(tab);
-};
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+    console.log("dropdown", isDropdownOpen);
+  };
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
-const handleLinkClick = (link) => {
-  setActiveLink(link);
-};
+  const handleLinkClick = (link) => {
+    console.log(link);
 
-return (
-  <context.Provider
-    value={{
-      showCart,
-      cartItems,
-      totalPrice,
-      totalQuantities,
-      qty,
-      incQt,
-      deccQt,
-      onAdd,
-      setShowCart,
-      toggleCartItemQuantity,
-      onRemove,
-      setCartItems,
-      setTotalPrice,
-      setTotalQuantities,
-      searchTerm,
-      setSearchTerm,
-      handleDropdownToggle,
-      isDropdownOpen,
-      setIsDropdownOpen,
-      handleTabChange,
-      activeTab,
-      setActiveTab,
+    if (link === "Logout") {
+      logout();
+      setActiveLink("Dashboard");
+    } else {
+      setActiveLink(link);
+    }
+  };
 
-      email,
-      setEmail,
-      password,
-      setPassword,
-      user,
-      loading,
-      error,
-      logInWithEmailAndPassword,
-      signInWithGoogle,
-      name,
-      setName,
-      db,
-      logout,
-      registerWithEmailAndPassword,
-      handleLinkClick,
-      activeLink,
+  return (
+    <context.Provider
+      value={{
+        showCart,
+        cartItems,
+        totalPrice,
+        totalQuantities,
+        qty,
+        incQt,
+        deccQt,
+        onAdd,
+        setShowCart,
+        toggleCartItemQuantity,
+        onRemove,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities,
+        searchTerm,
+        setSearchTerm,
+        handleDropdownToggle,
+        isDropdownOpen,
+        setIsDropdownOpen,
+        handleTabChange,
+        activeTab,
+        setActiveTab,
 
-      phoneNumber,
-      setPhoneNumber,
-      address,
-      setAddress,
-      addressSave,
-      phoneNumbersave,
-      setAddressSave,
-      setPhoneNumberSave,
-      sanityUser,
-    }}
-  >
-    {children}
-  </context.Provider>
-);
+        email,
+        setEmail,
+        password,
+        setPassword,
+        user,
+        loading,
+        error,
+        logInWithEmailAndPassword,
+        signInWithGoogle,
+        name,
+        setName,
+        db,
+        logout,
+        registerWithEmailAndPassword,
+        handleLinkClick,
+        activeLink,
+        setActiveLink,
+
+        phoneNumber,
+        setPhoneNumber,
+        address,
+        setAddress,
+        addressSave,
+        phoneNumbersave,
+        setAddressSave,
+        setPhoneNumberSave,
+        sanityUser,
+      }}
+    >
+      {children}
+    </context.Provider>
+  );
 };
 
 export const useStateContext = () => useContext(context);
