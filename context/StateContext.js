@@ -101,7 +101,7 @@ export const StateContext = ({ children }) => {
         });
     }
   }, [addressSave, phoneNumber]);
-
+  console.log("sanityUser", sanityUser);
   let foundProduct;
   let index;
   const onAdd = (product, quantity) => {

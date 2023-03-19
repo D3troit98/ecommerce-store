@@ -47,11 +47,6 @@ export default {
       type: "string",
     },
     {
-      name: "redirectstatus",
-      title: "Redirect Status",
-      type: "string",
-    },
-    {
       name: "status",
       title: "Status",
       type: "string",
@@ -64,7 +59,23 @@ export default {
     {
       name: "tx_ref",
       title: "Transaction Reference",
+      type: "number",
+    },
+    {
+      name: "address",
+      Title: "Address",
       type: "string",
     },
   ],
+  preview: {
+    select: {
+      name: "transaction_id",
+      email: "user.email",
+    },
+    prepare({ name, email }) {
+      return {
+        title: `${name} (${email})`,
+      };
+    },
+  },
 };
