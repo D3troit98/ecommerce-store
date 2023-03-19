@@ -63,7 +63,12 @@ export default {
     },
     {
       name: "address",
-      Title: "Address",
+      title: "Address",
+      type: "string",
+    },
+    {
+      name: "shipping_state",
+      title: "Shipping State",
       type: "string",
     },
   ],

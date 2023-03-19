@@ -1,8 +1,34 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { client } from "../../lib/client";
+import { useStateContext } from "../../context/StateContext";
+import groq from "groq";
 const Orders = () => {
-  const orders = []; // Replace with an array of order objects
-
+  const { sanityUser } = useStateContext();
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    const fetchOrderData = async () => {
+      const orderQuery = `*[_type == "order" && user._ref == "${sanityUser._id}"]{
+        _id,
+        address,
+        charge_response_code,
+        charge_response_message,
+        charged_amount,
+        created_at,
+        currency,
+        flw_ref,
+        status,
+        transaction_id,
+        tx_ref,
+        user->,
+        items[]->{_id, name, price, details}
+      }`;
+      const orderData = await client.fetch(orderQuery);
+      setOrders(orderData);
+      console.log(orderData);
+    };
+    fetchOrderData();
+  }, [sanityUser]);
+  console.log("orders", orders);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Orders header */}
@@ -15,19 +41,52 @@ const Orders = () => {
         <div className="flex flex-wrap -mx-4">
           {/* Display each order in a column */}
           {orders.map((order) => (
-            <div key={order.id} className="w-full md:w-1/2 px-4 mb-4">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <img
-                  src={order.image}
-                  alt={order.name}
-                  className="w-full mb-4"
-                />
-                <div className="text-gray-900 font-medium mb-2">
-                  {order.name}
+            <div key={order._id} className="w-full lg:w-1/3 px-4 mb-8">
+              <div className="border border-gray-200 rounded-lg shadow-md p-6 h-full">
+                <div className="flex justify-between mb-4">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Order {order.transaction_id}
+                  </h3>
+                  <span className="text-gray-600">
+                    {new Date(order.created_at).toLocaleDateString()}
+                  </span>
                 </div>
-                <div className="text-gray-600 mb-2">Order ID: {order.id}</div>
-                <div className="text-gray-600 mb-4">{order.date}</div>
-                <button className="bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-gray-800">
+                <ul className="space-y-4 mb-4">
+                  {order.items.map((item) => (
+                    <li
+                      key={item?._id}
+                      className="flex items-center justify-between"
+                    >
+                      <span className="font-medium">{item?.name}</span>
+                      <span className="text-gray-600">{item?.price}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex justify-between mb-4">
+                  <span className="font-medium">Total</span>
+                  <span className="text-gray-600">{order.charged_amount}</span>
+                </div>
+                <div className="flex justify-between mb-4">
+                  <span className="font-medium">Status</span>
+                  <span
+                    className={`${
+                      order.status === "order shipped"
+                        ? "text-green-600"
+                        : order.status === "order payed"
+                        ? "text-blue-600"
+                        : "text-gray-600"
+                    } font-medium`}
+                  >
+                    {order.status || "order pending"}
+                  </span>
+                </div>
+                <div className="flex justify-between mb-4">
+                  <span className="font-medium">Shipping State</span>
+                  <span className="text-gray-600">
+                    {order.shipping_state || "order pending"}
+                  </span>
+                </div>
+                <button className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700">
                   SEE DETAILS
                 </button>
               </div>

@@ -1,7 +1,7 @@
 import Dashboard from "../components/Auth/Dashboard";
 import { client } from "../lib/client";
 
-export default function DashBoardPage({ bannerData }) {
+export default function DashBoardPage({ bannerData, orderData }) {
   return (
     <div>
       <Dashboard heroBanner={bannerData.length && bannerData[0]} />
