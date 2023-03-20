@@ -1,9 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
-
+import LoadingScreen from './LoadingScreen'
 import { urlFor } from '../lib/client'
 
 const Product = ({ product: { image, name, slug, price } }) => {
+    if(!image || !name || !slug || !price) {
+        return (
+<></>
+        )
+    }
+
     return (
         <div className=''>
             <Link href={`/product/${slug.current}`}>

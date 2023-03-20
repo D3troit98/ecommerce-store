@@ -3,10 +3,11 @@ import { Product, FooterBanner, HeroBanner, EcommerceHeader, NewsletterSubscribe
 import { client } from '../lib/client'
 const Home = ({products, bannerData}) => {
   const [loadMore, setLoadMore] = useState(true);
-  
+  console.log("products",products)
   const handleLoadMore = () => {
     // Fetch more products and update the products state
   };
+
   return (
     <div className='indexstyles'>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -44,7 +45,6 @@ export const getServerSideProps = async () => {
 
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery)
-
   return {
     props :{products, bannerData}
   }
