@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { client } from "../../lib/client";
 import { useStateContext } from "../../context/StateContext";
-import groq from "groq";
+import Link from "next/link";
 const Orders = () => {
   const { sanityUser } = useStateContext();
   const [orders, setOrders] = useState([]);
@@ -52,9 +52,9 @@ const Orders = () => {
                   </span>
                 </div>
                 <ul className="space-y-4 mb-4">
-                  {order.items.map((item) => (
+                  {order.items.map((item, i) => (
                     <li
-                      key={item?._id}
+                      key={item ? item?._id : i}
                       className="flex items-center justify-between"
                     >
                       <span className="font-medium">{item?.name}</span>
@@ -86,9 +86,11 @@ const Orders = () => {
                     {order.shipping_state || "order pending"}
                   </span>
                 </div>
-                <button className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700">
-                  SEE DETAILS
-                </button>
+                <Link href={`/order/${order._id}`}>
+                  <button className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-400">
+                    SEE DETAILS
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
