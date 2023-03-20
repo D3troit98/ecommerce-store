@@ -95,7 +95,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
               </Link>
             </div>
             <div className="flex justify-end items-center gap-8">
-              <Link href={"/"} className="font-medium hover:text-gray-900">
+              <Link href={"/blog"} className="font-medium hover:text-gray-900">
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   BLOG
                 </h3>
