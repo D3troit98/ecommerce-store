@@ -101,7 +101,10 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 </h3>
               </Link>
               <span className="border-r-2 border-gray-400 h-4"></span>
-              <Link href={"/"} className="font-medium hover:text-gray-900">
+              <Link
+                href={"/contact-us"}
+                className="font-medium hover:text-gray-900"
+              >
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   CONTACT US
                 </h3>
