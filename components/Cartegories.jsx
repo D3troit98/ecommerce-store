@@ -50,8 +50,8 @@ const Cartegories = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/sales">
-                  <a>Sales</a>
+                <Link href="/car-accessories">
+                  <a>Car Accessories</a>
                 </Link>
               </li>
               <li>
@@ -60,7 +60,7 @@ const Cartegories = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/track-your-order">
+                <Link href="/dashboard">
                   <a>Track your order</a>
                 </Link>
               </li>
@@ -87,7 +87,7 @@ const Cartegories = () => {
                 <Link href="/kitchen-gadgets">Kitchen Gadgets</Link>
               </li>
               <li>
-                <Link href="/-stuff">Home Stuff</Link>
+                <Link href="/home-stuff">Home Stuff</Link>
               </li>
               <li>
                 <Link href="/gift-ideas">Gift Ideas</Link>

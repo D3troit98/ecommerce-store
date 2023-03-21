@@ -39,12 +39,15 @@ const ScrollingNavbar = ({ visible, scrollTop }) => {
 
           <div className="flex justify-between items-center ">
             <div className="flex gap-8  items-center links">
-              <Link href={"/"}>
+              <Link href={"/kitchen"}>
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   KITCHEN GADGETS
                 </h3>
               </Link>
-              <Link href={"/"} className="font-medium hover:text-gray-900">
+              <Link
+                href={"/home-stuffs"}
+                className="font-medium hover:text-gray-900"
+              >
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   HOME STUFFS
                 </h3>
@@ -54,17 +57,19 @@ const ScrollingNavbar = ({ visible, scrollTop }) => {
                   GIFT IDEAS
                 </h3>
               </Link>
-              <Link href={"/"} className="font-medium hover:text-gray-900">
+
+              <Link
+                href={"/car-accessories"}
+                className="font-medium hover:text-gray-900"
+              >
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
-                  WOMEN
+                  CAR ACCESSORIES
                 </h3>
               </Link>
-              <Link href={"/"} className="font-medium hover:text-gray-900">
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
-                  SALES
-                </h3>
-              </Link>
-              <Link href={"/"} className="font-medium hover:text-gray-900">
+              <Link
+                href={"/dashboard"}
+                className="font-medium hover:text-gray-900"
+              >
                 <h3 className="font-bold text-black text-sm hover:text-gray-700">
                   TRACK YOUR ORDER
                 </h3>
