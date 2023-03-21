@@ -22,7 +22,6 @@ const Register = ({ heroBanner }) => {
   } = useStateContext();
   const router = useRouter();
   const register = () => {
-    console.log("registering");
     if (!name) {
       toast.info("Please enter name", {
         position: toast.POSITION.TOP_CENTER,
@@ -36,7 +35,6 @@ const Register = ({ heroBanner }) => {
       // maybe trigger a loading screen
       return;
     } else if (user) {
-      console.log("there is already a user");
       router.push("/dashboard");
     }
   }, [user, loading, router]);

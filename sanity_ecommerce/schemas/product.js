@@ -36,6 +36,18 @@ export default {
       title: "Details",
       type: "string",
     },
+    {
+      name: "trending",
+      title: "Trending",
+      type: "boolean",
+      description: "Is this product currently trending?",
+    },
+    {
+      name: "categories",
+      title: "Categories",
+      type: "array",
+      of: [{ type: "string" }],
+    },
   ],
   preview: {
     select: {

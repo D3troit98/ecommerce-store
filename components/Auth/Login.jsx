@@ -22,7 +22,6 @@ const Login = ({ heroBanner }) => {
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    console.log("login effect called");
     if (!loading && user) {
       router.push("/dashboard");
       return;
@@ -177,13 +176,10 @@ const Login = ({ heroBanner }) => {
                 information necessary to make the purchase process faster and
                 easier.
               </p>
-              <div
-                className="flex justify-center items-center w-1/2 mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer"
-                onClick={() => console.log(user)}
-              >
-                {/* <Link href={"/register"}>
+              <div className="flex justify-center items-center w-1/2 mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer">
+                <Link href={"/register"}>
                   <h3>REGISTER</h3>
-                </Link> */}
+                </Link>
                 <h3>REGISTER</h3>
               </div>
             </div>

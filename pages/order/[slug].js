@@ -7,8 +7,6 @@ const OrderDetail = ({order}) => {
     const router = useRouter();
     const { slug } = router.query;
 
-    console.log("slug" , slug);
-
     if(!order) return <LoadingScreen  />
     return (
         <>
@@ -171,10 +169,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
         user->,
         items[]->
     }[0]`;
-    const order = await client.fetch(query)
-    // console.log(slug)
-    // console.log(product)
-    console.log("order", order)
+    const order = await client.fetch(query);
     return {
         props: { order }
     }

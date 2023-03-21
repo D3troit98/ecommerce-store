@@ -310,6 +310,7 @@ cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
  color: #324d67;
+ position: relative;
 
 }
 .product-card:hover{
@@ -329,6 +330,35 @@ cursor: pointer;
   font-weight: 800;
   margin-top: 6px;
   color: black;
+}
+
+.product-price--original {
+  margin-right: 10px;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  background-color: #ef4444;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.discount-badge span {
+  font-size: 14px;
+}
+
+.product-price--discounted {
+  margin-right: 10px;
+  color: #ef4444;
+  font-weight: bold;
 }
 
 .hero-banner-container{
@@ -1221,30 +1251,53 @@ margin-top: 160px;
  
 }
 
-
-
 .loading-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
 }
 
-.loading-spinner {
-  border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #f02d34;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
+.loading-circles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+.circle-1,
+.circle-2,
+.circle-3 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f02d34;
+  margin: 0 5px;
+  opacity: 0.6;
+  animation: pulse 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.circle-2 {
+  animation-delay: 0.2s;
+}
+
+.circle-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0.6;
   }
 }
-
 
 .login {
   height: 100vh;

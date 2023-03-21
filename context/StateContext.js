@@ -40,11 +40,9 @@ export const StateContext = ({ children }) => {
   useEffect(() => {
     let userFoundInSanity = false;
     if (user) {
-      console.log("user found in statecontext");
       client
         .fetch(`*[_type == "user" && _id == "${user.uid}"][0]`)
         .then((userData) => {
-          console.log("User data:", userData);
           if (userData) {
             userFoundInSanity = true;
           } else {
@@ -101,7 +99,6 @@ export const StateContext = ({ children }) => {
         });
     }
   }, [addressSave, phoneNumber]);
-  console.log("sanityUser", sanityUser);
   let foundProduct;
   let index;
   const onAdd = (product, quantity) => {
@@ -116,7 +113,6 @@ export const StateContext = ({ children }) => {
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        // console.log(cartProduct)
         if (cartProduct?._id === product._id)
           return {
             ...cartProduct,
@@ -184,15 +180,12 @@ export const StateContext = ({ children }) => {
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prevState) => !prevState);
-    console.log("dropdown", isDropdownOpen);
   };
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
   const handleLinkClick = (link) => {
-    console.log(link);
-
     if (link === "Logout") {
       logout();
       setActiveLink("Dashboard");

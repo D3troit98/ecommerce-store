@@ -6,12 +6,10 @@ const Sidebar = ({ handleLinkClick, activeLink }) => {
 
   const handleHover = () => {
     setShowItems(true);
-    console.log("it should show");
   };
 
   const handleLeave = () => {
     setShowItems(false);
-    console.log("it should not show");
   };
   return (
     <div className="flex">

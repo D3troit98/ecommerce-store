@@ -1,5 +1,5 @@
 import Kitchen from "../components/Kitchen";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { client, urlFor } from "../lib/client";
 import Link from "next/link";
 import Head from "next/head";
@@ -10,9 +10,12 @@ export default function GiftIdeas({ products }) {
     setCategory(cat);
   };
 
-  const filteredProducts = category
-    ? products.filter((product) => product.category === category)
-    : products;
+  const filteredProducts = useMemo(() => {
+    return category
+      ? products.filter((product) => product.categories.includes(category))
+      : products;
+  }, [products, category]);
+
   return (
     <>
       <Head>
@@ -40,7 +43,7 @@ export default function GiftIdeas({ products }) {
             <button
               onClick={() => handleCategoryClick("")}
               className={`mr-2 mb-2 md:mb-0 rounded-full border border-gray-500 py-1 px-2 ${
-                !category ? "bg-f02d34 text-white" : "bg-white text-gray-800"
+                !category ? "bg-[#f02d34] text-white" : "bg-white text-gray-800"
               }`}
             >
               All
@@ -49,7 +52,7 @@ export default function GiftIdeas({ products }) {
               onClick={() => handleCategoryClick("kitchen")}
               className={`mr-2 mb-2 md:mb-0 rounded-full border border-gray-500 py-1 px-2 ${
                 category === "kitchen"
-                  ? "bg-f02d34 text-white"
+                  ? "bg-[#f02d34] text-white"
                   : "bg-white text-gray-800"
               }`}
             >
@@ -59,7 +62,7 @@ export default function GiftIdeas({ products }) {
               onClick={() => handleCategoryClick("car")}
               className={`mr-2 mb-2 md:mb-0 rounded-full border border-gray-500 py-1 px-2 ${
                 category === "car"
-                  ? "bg-f02d34 text-white"
+                  ? "bg-[#f02d34] text-white"
                   : "bg-white text-gray-800"
               }`}
             >
@@ -69,7 +72,7 @@ export default function GiftIdeas({ products }) {
               onClick={() => handleCategoryClick("home")}
               className={`mr-2 mb-2 md:mb-0 rounded-full border border-gray-500 py-1 px-2 ${
                 category === "home"
-                  ? "bg-f02d34 text-white"
+                  ? "bg-[#f02d34] text-white"
                   : "bg-white text-gray-800"
               }`}
             >

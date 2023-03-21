@@ -24,11 +24,9 @@ const Orders = () => {
       }`;
       const orderData = await client.fetch(orderQuery);
       setOrders(orderData);
-      console.log(orderData);
     };
     fetchOrderData();
   }, [sanityUser]);
-  console.log("orders", orders);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Orders header */}

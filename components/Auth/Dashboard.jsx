@@ -30,7 +30,7 @@ const Dashboard = ({ heroBanner }) => {
     setActiveLink,
   } = useStateContext();
   const router = useRouter();
-  console.log("dasboard is no user", user);
+
   const fetchUserName = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -46,14 +46,10 @@ const Dashboard = ({ heroBanner }) => {
   };
 
   useEffect(() => {
-    console.log("dashboard  effect called");
-
     if (!loading && user) {
       fetchUserName();
     } else if (loading) {
-      console.log("loading...", loading);
     } else {
-      console.log("there is no user", user);
       router.push("/account");
     }
   }, [user]);
