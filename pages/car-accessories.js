@@ -41,7 +41,7 @@ export default function DashBoardPage({ products }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = '*[_type == "product"]';
+  const query = '*[_type == "product" && "car" in categories]';
   const products = await client.fetch(query);
   return {
     props: { products },
