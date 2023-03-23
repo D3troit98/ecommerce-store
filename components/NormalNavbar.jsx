@@ -49,7 +49,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
           <div className="flex justify-between items-center py-3 px-12 border-b border-gray-300">
             <div className="flex gap-8  items-center links">
               <Link href={"/kitchen"}>
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300">
                   KITCHEN GADGETS
                 </h3>
               </Link>
@@ -57,7 +57,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 href={"/home-stuffs"}
                 className="font-medium hover:text-gray-900"
               >
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300">
                   HOME STUFFS
                 </h3>
               </Link>
@@ -65,7 +65,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 href={"/gift-ideas"}
                 className="font-medium hover:text-gray-900"
               >
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300">
                   GIFT IDEAS
                 </h3>
               </Link>
@@ -74,7 +74,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 href={"/car-accessories"}
                 className="font-medium hover:text-gray-900"
               >
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300">
                   CAR ACCESSORIES
                 </h3>
               </Link>
@@ -82,14 +82,14 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 href={"/dashboard"}
                 className="font-medium hover:text-gray-900"
               >
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300">
                   TRACK YOUR ORDER
                 </h3>
               </Link>
             </div>
             <div className="flex justify-end items-center gap-8">
               <Link href={"/blog"} className="font-medium hover:text-gray-900">
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300 cursor-pointer">
                   BLOG
                 </h3>
               </Link>
@@ -98,7 +98,7 @@ const NormalNavbar = ({ visible, scrollTop }) => {
                 href={"/contact-us"}
                 className="font-medium hover:text-gray-900"
               >
-                <h3 className="font-bold text-black text-sm hover:text-gray-700">
+                <h3 className="font-bold text-black text-sm hover:text-gray-700 hover:scale-110 transition-all duration-300 cursor-pointer">
                   CONTACT US
                 </h3>
               </Link>

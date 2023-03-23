@@ -194,11 +194,8 @@ export const StateContext = ({ children }) => {
 
   const handleLinkClick = (link) => {
     if (link === "Logout") {
-      toast.promise(logout(), {
-        loading: "Saving...",
-        success: <b>Logging out!</b>,
-        error: <b>Logged out.</b>,
-      });
+      logout();
+      toast.success("logged out");
 
       setSanityUser(null);
       setActiveLink("Dashboard");
