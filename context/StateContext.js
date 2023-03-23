@@ -33,7 +33,8 @@ export const StateContext = ({ children }) => {
   const [addressSave, setAddressSave] = useState(false);
   const [phoneNumbersave, setPhoneNumberSave] = useState(false);
   const [sanityUser, setSanityUser] = useState(null);
-
+  const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState(null);
   useEffect(() => {
     if (user) {
       toast.loading("Loading user data...");
@@ -261,6 +262,10 @@ export const StateContext = ({ children }) => {
         sanityUser,
         handlePhoneNumberSave,
         handleAddressSave,
+        searchQuery,
+        setSearchQuery,
+        products,
+        setProducts,
       }}
     >
       {children}

@@ -2,12 +2,13 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import {  AiOutlineLeft ,AiOutlineSearch} from 'react-icons/ai'
 import { useStateContext } from "../context/StateContext";
+import LiveSearch from "./LiveSearch";
 const Cartegories = () => {
   const categoryRef = useRef();
-  const {handleTabChange,activeTab,  setIsDropdownOpen} = useStateContext()
+  const { handleTabChange, activeTab, setIsDropdownOpen } = useStateContext();
   return (
     <div className="cartegory-wrapper" ref={categoryRef}>
-      <div className="cartegory-container">
+      <div className="cartegory-container ">
         <button
           type="button"
           className="cart-heading"
@@ -16,25 +17,20 @@ const Cartegories = () => {
           <AiOutlineLeft />
         </button>
         <div className="category-search-container">
-          <input
-            type="search"
-            placeholder="Search for products"
-            className="category-input"
-          />
-          <AiOutlineSearch className="category-icon" />
+          {/* this is the search container */}
+          <LiveSearch />
+          {/* search container ends here  */}
         </div>
         <div className="tab-container">
           <button
-            className={`tab ${
-              activeTab === "menu" ? "active animate" : "inactivr"
-            }`}
+            className={`tab ${activeTab === "menu" ? "active " : "inactivr"}`}
             onClick={() => handleTabChange("menu")}
           >
             Menu
           </button>
           <button
             className={`tab ${
-              activeTab === "categories" ? "active animate" : "inactivr"
+              activeTab === "categories" ? "active " : "inactivr"
             }`}
             onClick={() => handleTabChange("categories")}
           >

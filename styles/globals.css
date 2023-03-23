@@ -361,11 +361,14 @@ cursor: pointer;
   font-weight: bold;
 }
 
+.hero-banner-margin{
+  position: relative;
+}
 .hero-banner-container{
   padding: 100px 40px;
   background-color: #dcdcdc;
   border-radius: 15px;
-  position: relative;
+ 
   height: 500px;
   line-height: 0.9; 
   width: 100%;
@@ -582,6 +585,7 @@ text-align: end;
   display: flex;
   padding: 10px;
   width: 100%;
+  position: relative;
 }
 
 .category-input{
@@ -678,7 +682,7 @@ border-bottom: 1px solid gray;
 .tab.active{
  background-color: #f02d34;
  color: white;
- transform: translateX(-100%);
+
 }
 
 .tab.active.animate {

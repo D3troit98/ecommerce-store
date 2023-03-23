@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { urlFor } from '../lib/client'
 const HeroBanner = ({heroBanner,inView}) => {
   return (
-    <div className={`hero-banner-container ${inView ? "fade-in" : ""}`}>
+    <div className={`hero-banner-container `}>
       <div className="hero-banner-margin">
         <p className="beats-solo">{heroBanner.smallText}</p>
         <h3>{heroBanner.midText}</h3>

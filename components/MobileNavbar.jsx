@@ -33,7 +33,6 @@ const MobileNavbar = ({ visible, scrollTop }) => {
       </p>
 
       <div className="flex justify-center items-center gap">
-        <AiOutlineSearch />
         <button
           type="button"
           className="cart-icon"

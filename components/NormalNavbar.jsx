@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  AiOutlineShopping,
-  AiOutlineSearch,
-  AiOutlineMenu,
-  handleDropdownToggle,
-} from "react-icons/ai";
-
-import { Cart, Cartegories } from "./";
+import { AiOutlineShopping, AiOutlineSearch } from "react-icons/ai";
 import { useStateContext } from "../context/StateContext";
-
+import LiveSearch from "./LiveSearch";
 const NormalNavbar = ({ visible, scrollTop }) => {
-
   const {
     showCart,
     setShowCart,
@@ -33,16 +25,9 @@ const NormalNavbar = ({ visible, scrollTop }) => {
               <h1 className="logo text-2xl font-bold hover:scale-110 transition-all duration-300">
                 <Link href={"/"}>Detroit Store</Link>
               </h1>
-              <div className="flex-1 mx-4">
-                <div className="relative border-gray-400 border-2 rounded-md">
-                  <input
-                    type="search"
-                    placeholder="Search for products"
-                    className="w-full py-2 pl-4 pr-10 rounded-full outline-none border-none focus:ring-0"
-                  />
-                  <AiOutlineSearch className="absolute top-1/2 transform -translate-y-1/2 right-3 text-gray-500" />
-                </div>
-              </div>
+              {/* this is the search container */}
+              <LiveSearch />
+              {/* search container ends here  */}
               <h1 className="logo mr-1 ml-1 text-sm font-semibold hover:scale-110 transition-all duration-300">
                 <Link href={"/account"}>MY ACCOUNT</Link>
               </h1>
