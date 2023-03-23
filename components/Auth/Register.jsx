@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { urlFor } from "../../lib/client";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,9 +23,7 @@ const Register = ({ heroBanner }) => {
   const router = useRouter();
   const register = () => {
     if (!name) {
-      toast.info("Please enter name", {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast.error("Please enter name");
     }
     registerWithEmailAndPassword(name, email, password);
   };
@@ -44,7 +42,7 @@ const Register = ({ heroBanner }) => {
         <LoadingScreen />
       ) : (
         <div>
-          <ToastContainer />
+          <Toaster position="top-center" reverseOrder={false} />
           <div className={`hero-banner-container `}>
             <div className="hero-banner-margin">
               <p className="beats-solo">Discover something unique</p>

@@ -3,10 +3,9 @@ import Link from "next/link";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
-import { ToastContainer, toast } from "react-toastify";
 import { urlFor } from "../../lib/client";
 
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Sidebar from "./Sidebar";
 import DashBoardDetails from "./DashBoardDetails";
@@ -39,9 +38,7 @@ const Dashboard = ({ heroBanner }) => {
       setName(data.name);
     } catch (err) {
       console.error(err);
-      toast.error("An error occured while fetching user data", {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
+      toast.error("An error occured while fetching user data");
     }
   };
 
@@ -59,7 +56,7 @@ const Dashboard = ({ heroBanner }) => {
         <LoadingScreen />
       ) : (
         <div>
-          <ToastContainer />
+          <Toaster position="top-center" reverseOrder={false} />
           <div className={`hero-banner-container `}>
             <div className="hero-banner-margin">
               <p className="beats-solo">Discover something unique</p>

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import LoadingScreen from "./LoadingScreen";
 import { urlFor } from "../lib/client";
 
 const DiscountProduct = ({ discountData }) => {

@@ -56,6 +56,7 @@ export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
   const weeklyquery = `*[_type == "weeklyDeal" && startDate <= now() && endDate >= now()] {
+    _id,
     product->,
     discount,
     startDate,

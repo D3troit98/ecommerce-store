@@ -9,8 +9,8 @@ const DashBoardDetails = ({ handleLinkClick }) => {
     setPhoneNumber,
     address,
     setAddress,
-    setAddressSave,
-    setPhoneNumberSave,
+    handlePhoneNumberSave,
+    handleAddressSave,
     addressSave,
     phoneNumbersave,
   } = useStateContext();
@@ -69,7 +69,7 @@ const DashBoardDetails = ({ handleLinkClick }) => {
                 />
                 <button
                   className="bg-[#f02d34] hover:bg-red-500 text-white font-medium py-2 px-4 rounded-r-md"
-                  onClick={() => setAddressSave(true)}
+                  onClick={() => handleAddressSave()}
                 >
                   Save
                 </button>
@@ -82,7 +82,7 @@ const DashBoardDetails = ({ handleLinkClick }) => {
 
                   <button
                     className="text-gray-600 hover:underline"
-                    onClick={() => setPhoneNumberSave(false)}
+                    onClick={() => handlePhoneNumberSave()}
                   >
                     <MdModeEdit />
                   </button>

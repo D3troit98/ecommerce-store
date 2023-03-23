@@ -14,3 +14,4 @@ export { default as MobileNavbar } from "./MobileNavbar";
 export { default as ScrollingNavbar } from "./ScrollingNavbar";
 export { default as LoadingScreen } from "./LoadingScreen";
 export { default as DiscountProduct } from "./DiscountProduct";
+export { default as MissingLoader } from "./MissingLoader";

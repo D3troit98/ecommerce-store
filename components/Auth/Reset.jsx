@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useStateContext } from "../../context/StateContext";
 import { useRouter } from "next/router";
 import LoadingScreen from "../LoadingScreen";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { urlFor } from "../../lib/client";
 
 const Reset = ({ heroBanner }) => {
@@ -31,7 +31,7 @@ const Reset = ({ heroBanner }) => {
         <LoadingScreen />
       ) : (
         <div>
-          <ToastContainer />
+          <Toaster position="top-center" reverseOrder={false} />
           <div className={`hero-banner-container `}>
             <div className="hero-banner-margin">
               <p className="beats-solo">Discover something unique</p>

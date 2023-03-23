@@ -1,0 +1,42 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f02d34;
+    margin-bottom: 16px;
+  }
+  
+  .line {
+    height: 6px;
+    width: 100%;
+    background-color: #f02d34;
+    opacity: 0;
+    animation: fadeInOut 1.5s linear infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

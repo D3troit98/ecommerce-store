@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   auth,
   registerWithEmailAndPassword,
@@ -30,75 +30,81 @@ export const StateContext = ({ children }) => {
   const [activeLink, setActiveLink] = useState("Dashboard");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [addressSave, setAddressSave] = useState(
-    address.length > 1 ? true : false
-  );
-  const [phoneNumbersave, setPhoneNumberSave] = useState(
-    phoneNumber.length > 1 ? true : false
-  );
+  const [addressSave, setAddressSave] = useState(false);
+  const [phoneNumbersave, setPhoneNumberSave] = useState(false);
   const [sanityUser, setSanityUser] = useState(null);
+
   useEffect(() => {
-    let userFoundInSanity = false;
     if (user) {
+      toast.loading("Loading user data...");
       client
         .fetch(`*[_type == "user" && _id == "${user.uid}"][0]`)
         .then((userData) => {
           if (userData) {
-            userFoundInSanity = true;
-          } else {
-            userFoundInSanity = false;
+            setSanityUser(userData);
+            console.log("userData", userData);
+            setPhoneNumber(userData?.phoneNumber || "");
+            setPhoneNumberSave(!!userData?.phoneNumber);
+            setAddress(userData?.address || "");
+            setAddressSave(!!userData?.address);
+            toast.success("Logged in!");
           }
-          setSanityUser(userData);
-          setPhoneNumber(userData.phoneNumber);
-          if (userData.phoneNumber.length > 1) setPhoneNumberSave(true);
-          setAddress(userData.address);
-          if (userData.address.length > 1) setAddressSave(true);
+          // If userData is null, then it's a new user and we need to create a record in Sanity
+          if (!userData) {
+            const doc = {
+              _id: user.uid,
+              _type: "user",
+              name: name,
+              email: user.email,
+              phoneNumber: phoneNumber,
+              address: address,
+            };
+            toast.loading("creating user data...");
+            client
+              .create(doc)
+              .then((result) => {
+                setSanityUser(result);
+                toast.success("Logged in!");
+              })
+              .catch((error) => {
+                toast.error("Create failed: ", error.message);
+              });
+          }
         })
         .catch((error) => {
-          console.error("Fetch failed: ", error.message);
-          userFoundInSanity = false;
+          toast.error("Fetch failed: ", error.message);
         });
-      if (!userFoundInSanity) {
-        const doc = {
-          _id: user.uid,
-          _type: "user",
-          name: user.displayName ? user.displayName : name,
-          email: user.email,
-          phoneNumber: phoneNumber,
-          address: address,
-        };
-        client
-          .createOrReplace(doc)
-          .then((result) => {
-            console.log(`Document ID is ${result._id}`);
-          })
-          .catch((error) => {
-            console.error("Create failed: ", error.message);
-          });
-      }
     }
+    toast.dismiss();
   }, [user]);
 
-  useEffect(() => {
-    if ((user && addressSave) || (user && phoneNumber)) {
-      const doc = {
-        _id: user.uid,
-        _type: "user",
-        name: user.displayName ? user.displayName : name,
-        email: user.email,
-        phoneNumber: phoneNumber,
-        address: address,
-      };
-      client
-        .createOrReplace(doc)
-        .then((result) => {
-          console.log(`Document ID is ${result._id}`);
-        })
-        .catch((error) => {
-          console.error("Create failed: ", error.message);
-        });
+  const updateUserInSanity = async (userId, updates) => {
+    const doc = {
+      _id: userId,
+      _type: "user",
+      name: name,
+      ...updates,
+    };
+    try {
+      const result = await client.createOrReplace(doc);
+      toast("Updated!", {
+        icon: "👏",
+      });
+    } catch (error) {
+      toast.error("Create failed: ", error.message);
     }
-  }, [addressSave, phoneNumber]);
+  };
+
+  const handlePhoneNumberSave = () => {
+    setPhoneNumberSave(true);
+    updateUserInSanity(user.uid, { phoneNumber });
+  };
+
+  const handleAddressSave = () => {
+    setAddressSave(true);
+    updateUserInSanity(user.uid, { address });
+  };
+
   let foundProduct;
   let index;
   const onAdd = (product, quantity) => {
@@ -187,7 +193,13 @@ export const StateContext = ({ children }) => {
 
   const handleLinkClick = (link) => {
     if (link === "Logout") {
-      logout();
+      toast.promise(logout(), {
+        loading: "Saving...",
+        success: <b>Logging out!</b>,
+        error: <b>Logged out.</b>,
+      });
+
+      setSanityUser(null);
       setActiveLink("Dashboard");
     } else {
       setActiveLink(link);
@@ -247,6 +259,8 @@ export const StateContext = ({ children }) => {
         setAddressSave,
         setPhoneNumberSave,
         sanityUser,
+        handlePhoneNumberSave,
+        handleAddressSave,
       }}
     >
       {children}
