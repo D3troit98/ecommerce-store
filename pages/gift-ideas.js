@@ -82,28 +82,30 @@ export default function GiftIdeas({ products }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
-            <div
-              key={product._id}
-              className="product-card border border-gray-200 rounded-lg overflow-hidden"
-            >
-              <img
-                src={urlFor(product.image && product.image[0])}
-                alt={product.name}
-                className="product-image w-full h-60 object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-lg font-bold mb-2">{product.name}</h2>
-                <p className="text-gray-700 text-base">{product.details}</p>
-                <div className="flex justify-between items-center mt-4">
-                  <p className="text-gray-900 font-bold text-xl">
-                    ₦{product.price}
-                  </p>
-                  <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
-                    Add to Cart
-                  </button>
+            <Link href={`/product/${product.slug.current}`}>
+              <div
+                key={product._id}
+                className="product-card border border-gray-200 rounded-lg overflow-hidden"
+              >
+                <img
+                  src={urlFor(product.image && product.image[0])}
+                  alt={product.name}
+                  className="product-image w-full h-60 object-cover"
+                />
+                <div className="p-4">
+                  <h2 className="text-lg font-bold mb-2">{product.name}</h2>
+                  <p className="text-gray-700 text-base">{product.details}</p>
+                  <div className="flex justify-between items-center mt-4">
+                    <p className="text-gray-900 font-bold text-xl">
+                      ₦{product.price}
+                    </p>
+                    <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
