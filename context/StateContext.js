@@ -60,7 +60,7 @@ export const StateContext = ({ children }) => {
               phoneNumber: phoneNumber,
               address: address,
             };
-            toast.loading("creating user data...");
+            toast.success("creating user data...");
             client
               .create(doc)
               .then((result) => {
@@ -68,12 +68,12 @@ export const StateContext = ({ children }) => {
                 toast.success("Logged in!");
               })
               .catch((error) => {
-                toast.error("Create failed: ", error.message);
+                toast.error("create user data failed: ", error.message);
               });
           }
         })
         .catch((error) => {
-          toast.error("Fetch failed: ", error.message);
+          toast.error("Client: ", error.message);
         });
     }
     toast.dismiss();
