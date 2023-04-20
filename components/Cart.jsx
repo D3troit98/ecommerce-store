@@ -132,7 +132,11 @@ const Cart = () => {
               ) : (
                 <div>
                   <Link href="/dashboard">
-                    <button type="button" className="btn">
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => setShowCart(false)}
+                    >
                       SIGN IN
                     </button>
                   </Link>
